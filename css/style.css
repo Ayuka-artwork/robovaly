@@ -1,0 +1,231 @@
+/* ======================
+   VARIABLES / THEME
+====================== */
+
+:root {
+  --color-primary: #FF0000;
+  --color-secondary: #00C2D1;
+  --color-accent: #00E087;
+  --color-dark: #2E2E2E;
+  --color-light: #F9F9F9;
+
+  --font-main: "aktiv-grotesk", sans-serif;
+  --font-thin: "aktiv-grotesk-thin", sans-serif;
+}
+
+/* ======================
+   RESET
+====================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ======================
+   BASE
+====================== */
+
+body {
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+}
+
+/* ======================
+   TYPO
+====================== */
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+}
+
+.date {
+  display: inline-block;
+  margin-top: 1rem;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+}
+
+/* ======================
+   NAV
+====================== */
+
+header {
+  background: var(--color-dark);
+  padding: 1rem 2rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+}
+
+/* ======================
+   SECTIONS
+====================== */
+
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+.section {
+  padding: 4rem 2rem;
+}
+
+.info {
+  background: var(--color-secondary);
+  color: white;
+}
+
+.activities .cards {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.card {
+  text-align: center;
+}
+
+.card img {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+/* ======================
+   SVG ANIME
+====================== */
+
+.scroll-svg {
+  position: absolute;
+  width: 80px;
+  right: 10%;
+  top: 30%;
+  transition: transform 0.1s linear;
+}
+
+/* ======================
+   FOOTER
+====================== */
+
+.footer {
+  background: var(--color-dark);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.footer .icon {
+  opacity: 0.8;
+}
+
+/* ======================
+   RESPONSIVE
+====================== */
+
+@media (max-width: 768px) {
+
+  .nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .activities .cards {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* ======================
+   SVG / ICONES NORMALISÉES
+====================== */
+
+/* Logo principal */
+.logo {
+  width: 130px;
+  height: auto;
+}
+
+/* Icônes UI (réseaux, boutons) */
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Icônes de contenu (robots, cartes) */
+.icon-lg {
+  width: 72px;
+  height: 72px;
+}
+
+/* SVG décoratif */
+.scroll-svg {
+  width: 70px;
+  height: auto;
+}
+
+/* SVG pilotés par la couleur CSS */
+svg {
+  fill: currentColor;
+}
+
+/* ======================
+   CONTEXTES SOMBRES
+====================== */
+
+header,
+.footer {
+  background: var(--color-dark);
+  color: white;
+}
+
+header .logo,
+header .icon,
+.footer .logo,
+.footer .icon {
+  color: white;
+}
