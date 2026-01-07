@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robovaly – Festival de la robotique</title>
+  <title>Robovaly – Accès</title>
 
   <!-- Adobe Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/mgs3sko.css">
@@ -16,68 +16,123 @@
 
 <header>
   <div class="nav">
-    <img src="assets/svg/logo.svg" alt="Robovaly" class="logo">
 
-    <nav>
+    <!-- LOGO -->
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="logo"
+         alt="Robovaly">
+
+    <!-- BOUTON BURGER -->
+    <button class="burger" aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- NAVIGATION DESKTOP -->
+    <nav class="menu-desktop">
       <a href="index.html">Accueil</a>
       <a href="infos.html">Infos & Questions</a>
       <a href="programme.html">Programme</a>
       <a href="acces.html">Accès</a>
       <a href="billetterie.html" class="btn-primary">Billetterie</a>
     </nav>
+
   </div>
 </header>
 
+<!-- ======================
+     MENU SLIDE MOBILE
+====================== -->
+<nav class="menu-panel">
+
+  <div class="menu-header">
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="menu-logo"
+         alt="Robovaly">
+
+    <button class="close-menu" aria-label="Fermer le menu">
+      ✕
+    </button>
+  </div>
+
+  <a href="index.html">Accueil</a>
+  <a href="infos.html">Infos & Questions</a>
+  <a href="programme.html">Programme</a>
+  <a href="acces.html">Accès</a>
+  <a href="billetterie.html" class="btn-primary">Billetterie</a>
+
+</nav>
+
 <main>
 
-<section class="hero">
-  <h1>ROBOVALY</h1>
-  <p class="subtitle">La journée de la robotique pour toutes et tous</p>
-  <span class="date">Samedi 22 septembre 2026</span>
-
-  <!-- SVG animé -->
-  <img src="assets/svg/Icono-01.svg" class="scroll-svg" alt="">
-</section>
-
-<section class="section info">
-  <h2>Qu’est-ce que Robovaly</h2>
-  <p>
-    Festival ludique et accessible dédié à la robotique,
-    aux technologies et à la curiosité scientifique.
-  </p>
-</section>
-
-<section class="section activities">
-  <h2>Activités fascinantes</h2>
-
-  <div class="cards">
-    <div class="card">
-      <img src="assets/svg/robot-workshop.svg" alt="">
-      <h3>Ateliers & Workshops</h3>
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Accès</h1>
+      <p class="subtitle">Rejoignez facilement le festival, en mobilité douce ou en voiture.</p>
     </div>
 
-    <div class="card">
-      <img src="assets/svg/robot-talk.svg" alt="">
-      <h3>Conférences</h3>
+    <div class="bg-parallax">
+      <img src="assets/svg/gray/circle_gray.svg"      data-pos="left-top">
+      <img src="assets/svg/gray/wave_small_gray.svg"  data-pos="mid-top-left">
+      <img src="assets/svg/gray/leaf_gray.svg"        data-pos="right-top">
+      <img src="assets/svg/gray/nut_gray.svg"         data-pos="left-bottom">
+      <img src="assets/svg/gray/octagon_gray.svg"     data-pos="mid-bottom">
+      <img src="assets/svg/gray/screwdriver_gray.svg" data-pos="right-bottom">
     </div>
+  </section>
 
-    <div class="card">
-      <img src="assets/svg/robot-stand.svg" alt="">
-      <h3>Stands & Démo</h3>
+  <section class="section access">
+    <h2>Se rendre au festival</h2>
+    <div class="access-grid">
+      <div class="access-card">
+        <h3>Transports publics</h3>
+        <p>Metro M1 · arrêt EPFL. Bus 32, 33, 705 · arrêt EPFL.</p>
+      </div>
+      <div class="access-card">
+        <h3>Vélo</h3>
+        <p>Pistes cyclables jusqu’au campus, stationnements vélos près de l’Esplanade.</p>
+      </div>
+      <div class="access-card">
+        <h3>Voiture</h3>
+        <p>Parkings visiteurs disponibles sur le campus. Suivez la signalétique Robovaly.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="section info info--green full-bleed">
+    <div class="inner">
+      <h2>Adresse</h2>
+      <div class="address-grid">
+        <div class="info-card">
+          <h3>Sur place</h3>
+          <p>EPFL · Route Cantonale · 1015 Lausanne</p>
+        </div>
+        <div class="info-card">
+          <h3>Carte</h3>
+          <p>Plan du campus, entrée principale et parkings visiteurs.</p>
+          <a href="#" class="btn-primary">Ouvrir la carte</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section access">
+    <h2>Accessibilité PMR</h2>
+    <p>
+      L’ensemble des espaces est accessible aux personnes à mobilité réduite.
+      Un accueil dédié est disponible à l’entrée principale.
+    </p>
+  </section>
 
 </main>
 
 <footer class="footer">
-  <p>Nous suivre</p>
-  <img src="assets/svg/instagram.svg" alt="Instagram">
-  <span>© 2026 Robovaly</span>
+  <p class="footer-title">Nous suivre</p>
+  <img src="assets/svg/off_white/instagram_logo_white.svg" class="icon" alt="Instagram">
+  <span class="footer-copy">© 2026 Robovaly</span>
 </footer>
 
-<!-- JS -->
 <script src="js/main.js"></script>
-
 </body>
 </html>

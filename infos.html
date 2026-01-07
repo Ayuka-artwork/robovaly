@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robovaly – Festival de la robotique</title>
+  <title>Robovaly – Infos & Questions</title>
 
   <!-- Adobe Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/mgs3sko.css">
@@ -16,68 +16,130 @@
 
 <header>
   <div class="nav">
-    <img src="assets/svg/logo.svg" alt="Robovaly" class="logo">
 
-    <nav>
+    <!-- LOGO -->
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="logo"
+         alt="Robovaly">
+
+    <!-- BOUTON BURGER -->
+    <button class="burger" aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- NAVIGATION DESKTOP -->
+    <nav class="menu-desktop">
       <a href="index.html">Accueil</a>
       <a href="infos.html">Infos & Questions</a>
       <a href="programme.html">Programme</a>
       <a href="acces.html">Accès</a>
       <a href="billetterie.html" class="btn-primary">Billetterie</a>
     </nav>
+
   </div>
 </header>
 
+<!-- ======================
+     MENU SLIDE MOBILE
+====================== -->
+<nav class="menu-panel">
+
+  <div class="menu-header">
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="menu-logo"
+         alt="Robovaly">
+
+    <button class="close-menu" aria-label="Fermer le menu">
+      ✕
+    </button>
+  </div>
+
+  <a href="index.html">Accueil</a>
+  <a href="infos.html">Infos & Questions</a>
+  <a href="programme.html">Programme</a>
+  <a href="acces.html">Accès</a>
+  <a href="billetterie.html" class="btn-primary">Billetterie</a>
+
+</nav>
+
 <main>
 
-<section class="hero">
-  <h1>ROBOVALY</h1>
-  <p class="subtitle">La journée de la robotique pour toutes et tous</p>
-  <span class="date">Samedi 22 septembre 2026</span>
-
-  <!-- SVG animé -->
-  <img src="assets/svg/Icono-01.svg" class="scroll-svg" alt="">
-</section>
-
-<section class="section info">
-  <h2>Qu’est-ce que Robovaly</h2>
-  <p>
-    Festival ludique et accessible dédié à la robotique,
-    aux technologies et à la curiosité scientifique.
-  </p>
-</section>
-
-<section class="section activities">
-  <h2>Activités fascinantes</h2>
-
-  <div class="cards">
-    <div class="card">
-      <img src="assets/svg/robot-workshop.svg" alt="">
-      <h3>Ateliers & Workshops</h3>
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Infos & Questions</h1>
+      <p class="subtitle">Tout ce qu’il faut savoir avant votre visite.</p>
     </div>
 
-    <div class="card">
-      <img src="assets/svg/robot-talk.svg" alt="">
-      <h3>Conférences</h3>
+    <div class="bg-parallax">
+      <img src="assets/svg/gray/circle_gray.svg"      data-pos="left-top">
+      <img src="assets/svg/gray/wave_small_gray.svg"  data-pos="mid-top-left">
+      <img src="assets/svg/gray/leaf_gray.svg"        data-pos="right-top">
+      <img src="assets/svg/gray/nut_gray.svg"         data-pos="left-bottom">
+      <img src="assets/svg/gray/octagon_gray.svg"     data-pos="mid-bottom">
+      <img src="assets/svg/gray/screwdriver_gray.svg" data-pos="right-bottom">
     </div>
+  </section>
 
-    <div class="card">
-      <img src="assets/svg/robot-stand.svg" alt="">
-      <h3>Stands & Démo</h3>
+  <section class="section info info--violet full-bleed">
+    <div class="inner">
+      <h2>Infos pratiques</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Dates & horaires</h3>
+          <p>Samedi 22 septembre 2026 · 10h–19h</p>
+        </div>
+        <div class="info-card">
+          <h3>Lieu</h3>
+          <p>EPFL — Esplanade et forums couverts</p>
+        </div>
+        <div class="info-card">
+          <h3>Tarifs</h3>
+          <p>Entrée libre. Ateliers sur inscription.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="section faq">
+    <h2>Questions fréquentes</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>Faut-il s’inscrire pour venir ?</summary>
+        <p>
+          L’accès au festival est libre. Certaines activités ont une jauge limitée
+          et nécessitent une inscription sur place.
+        </p>
+      </details>
+      <details>
+        <summary>Puis-je venir avec des enfants ?</summary>
+        <p>
+          Oui, le festival est pensé pour les familles. Des ateliers sont adaptés
+          dès 6 ans et les espaces sont accessibles aux poussettes.
+        </p>
+      </details>
+      <details>
+        <summary>Y a-t-il de quoi manger sur place ?</summary>
+        <p>
+          Des stands de restauration et des points d’eau sont disponibles sur le site.
+          Vous pouvez aussi apporter votre pique-nique.
+        </p>
+      </details>
+    </div>
+    <div class="faq-cta">
+      <a href="#" class="btn-primary">Contactez-nous</a>
+    </div>
+  </section>
 
 </main>
 
 <footer class="footer">
-  <p>Nous suivre</p>
-  <img src="assets/svg/instagram.svg" alt="Instagram">
-  <span>© 2026 Robovaly</span>
+  <p class="footer-title">Nous suivre</p>
+  <img src="assets/svg/off_white/instagram_logo_white.svg" class="icon" alt="Instagram">
+  <span class="footer-copy">© 2026 Robovaly</span>
 </footer>
 
-<!-- JS -->
 <script src="js/main.js"></script>
-
 </body>
 </html>

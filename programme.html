@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robovaly – Festival de la robotique</title>
+  <title>Robovaly – Programme</title>
 
   <!-- Adobe Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/mgs3sko.css">
@@ -16,68 +16,151 @@
 
 <header>
   <div class="nav">
-    <img src="assets/svg/logo.svg" alt="Robovaly" class="logo">
 
-    <nav>
+    <!-- LOGO -->
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="logo"
+         alt="Robovaly">
+
+    <!-- BOUTON BURGER -->
+    <button class="burger" aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- NAVIGATION DESKTOP -->
+    <nav class="menu-desktop">
       <a href="index.html">Accueil</a>
       <a href="infos.html">Infos & Questions</a>
       <a href="programme.html">Programme</a>
       <a href="acces.html">Accès</a>
       <a href="billetterie.html" class="btn-primary">Billetterie</a>
     </nav>
+
   </div>
 </header>
 
+<!-- ======================
+     MENU SLIDE MOBILE
+====================== -->
+<nav class="menu-panel">
+
+  <div class="menu-header">
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="menu-logo"
+         alt="Robovaly">
+
+    <button class="close-menu" aria-label="Fermer le menu">
+      ✕
+    </button>
+  </div>
+
+  <a href="index.html">Accueil</a>
+  <a href="infos.html">Infos & Questions</a>
+  <a href="programme.html">Programme</a>
+  <a href="acces.html">Accès</a>
+  <a href="billetterie.html" class="btn-primary">Billetterie</a>
+
+</nav>
+
 <main>
 
-<section class="hero">
-  <h1>ROBOVALY</h1>
-  <p class="subtitle">La journée de la robotique pour toutes et tous</p>
-  <span class="date">Samedi 22 septembre 2026</span>
-
-  <!-- SVG animé -->
-  <img src="assets/svg/Icono-01.svg" class="scroll-svg" alt="">
-</section>
-
-<section class="section info">
-  <h2>Qu’est-ce que Robovaly</h2>
-  <p>
-    Festival ludique et accessible dédié à la robotique,
-    aux technologies et à la curiosité scientifique.
-  </p>
-</section>
-
-<section class="section activities">
-  <h2>Activités fascinantes</h2>
-
-  <div class="cards">
-    <div class="card">
-      <img src="assets/svg/robot-workshop.svg" alt="">
-      <h3>Ateliers & Workshops</h3>
+  <!-- HERO DE PAGE AVEC ICÔNES PARALLAX -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Programme</h1>
+      <p class="subtitle">Le déroulé de la journée, de l’ouverture à la clôture.</p>
     </div>
 
-    <div class="card">
-      <img src="assets/svg/robot-talk.svg" alt="">
-      <h3>Conférences</h3>
+    <div class="bg-parallax">
+      <img src="assets/svg/gray/circle_gray.svg"      data-pos="left-top">
+      <img src="assets/svg/gray/wave_small_gray.svg"  data-pos="mid-top-left">
+      <img src="assets/svg/gray/leaf_gray.svg"        data-pos="right-top">
+      <img src="assets/svg/gray/nut_gray.svg"         data-pos="left-bottom">
+      <img src="assets/svg/gray/octagon_gray.svg"     data-pos="mid-bottom">
+      <img src="assets/svg/gray/screwdriver_gray.svg" data-pos="right-bottom">
     </div>
+  </section>
 
-    <div class="card">
-      <img src="assets/svg/robot-stand.svg" alt="">
-      <h3>Stands & Démo</h3>
+  <!-- SECTION PROGRAMME EN BANDEAU VERT FULL-WIDTH -->
+  <section class="section program full-bleed">
+
+    <div class="calendar-wrap">
+      <div class="calendar-header">
+        <div class="calendar-corner"></div>
+        <div class="calendar-col">Ateliers</div>
+        <div class="calendar-col">Conférences</div>
+        <div class="calendar-col">Démo</div>
+        <div class="calendar-col">Expo</div>
+      </div>
+
+      <div class="calendar-body">
+        <!-- Colonne horaires -->
+        <div class="calendar-times">
+          <span>10h</span>
+          <span>11h</span>
+          <span>12h</span>
+          <span>13h</span>
+          <span>14h</span>
+          <span>15h</span>
+          <span>16h</span>
+          <span>17h</span>
+          <span>18h</span>
+        </div>
+
+        <!-- Grille des événements + barre "now" -->
+        <div class="calendar-grid">
+          <div class="calendar-now" aria-hidden="true"></div>
+
+          <div class="calendar-event is-violet" style="grid-column: 1; grid-row: 2 / span 6;">
+            <h3>Atelier Robot Lab</h3>
+            <p>10h–16h</p>
+          </div>
+
+          <div class="calendar-event is-green" style="grid-column: 2; grid-row: 3 / span 5;">
+            <h3>Masterclass IA</h3>
+            <p>11h–15h</p>
+          </div>
+
+          <div class="calendar-event is-yellow" style="grid-column: 3; grid-row: 4 / span 2;">
+            <h3>Talk · Robots du futur</h3>
+            <p>12h–13h</p>
+          </div>
+
+          <div class="calendar-event is-yellow" style="grid-column: 3; grid-row: 6 / span 2;">
+            <h3>Talk · Bio-robotique</h3>
+            <p>14h–15h</p>
+          </div>
+
+          <div class="calendar-event is-violet" style="grid-column: 4; grid-row: 3 / span 6;">
+            <h3>Expo interactive</h3>
+            <p>11h–17h</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- BANDEAU INFO ATELIERS -->
+  <section class="section info info--green full-bleed section-compact">
+    <div class="inner">
+      <h2>Ateliers sur inscription</h2>
+      <p>
+        Les ateliers ont un nombre de places limité. Inscription sur place dès l’ouverture,
+        dans la limite des disponibilités.
+      </p>
+    </div>
+  </section>
 
 </main>
 
 <footer class="footer">
-  <p>Nous suivre</p>
-  <img src="assets/svg/instagram.svg" alt="Instagram">
-  <span>© 2026 Robovaly</span>
+  <p class="footer-title">Nous suivre</p>
+  <img src="assets/svg/off_white/instagram_logo_white.svg" class="icon" alt="Instagram">
+  <span class="footer-copy">© 2026 Robovaly</span>
 </footer>
 
-<!-- JS -->
 <script src="js/main.js"></script>
-
 </body>
 </html>
