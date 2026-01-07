@@ -41,7 +41,7 @@ body {
 
 h1 {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: black;
 }
 
 h2 {
@@ -192,7 +192,47 @@ svg {
   }
 
   .btn-primary {
-    margin-top: 0.5rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.8rem auto 0;
   }
 }
+
+/* ======================
+   BURGER MENU
+====================== */
+
+.burger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .burger {
+    display: block;
+    align-self: flex-end;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+}
+
+
 
