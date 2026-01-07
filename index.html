@@ -17,87 +17,149 @@
 <header>
   <div class="nav">
 
-    <!-- LOGO INLINE -->
-    <svg
-      class="logo"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 495.23 301"
-      fill="currentColor"
-      aria-label="Robovaly">
+    <!-- LOGO -->
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="logo"
+         alt="Robovaly">
 
-      
+    <!-- BOUTON BURGER -->
+    <button class="burger" aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-      <path d="M266.03,149.3c-.17,0-.34,0-.51,0l-16.63.12c-1.63-3.95-2.14-5.21-3.87-9.39,7.32-3.95,11.36-12.45,9.23-20.88-2.13-8.43-9.71-14.04-18.02-14.04-1.51,0-3.05.19-4.58.57-9.96,2.52-15.99,12.64-13.47,22.6,2.13,8.43,9.72,13.98,18.03,13.98h.02l.76,7.25-10.38.08c-37.93.28-68.45,31.25-68.17,69.17l.08,11.6c.19,25.41,20.84,45.88,46.21,45.88.12,0,.23,0,.34,0l83.81-.61c25.53-.19,46.07-21.03,45.88-46.55l-.08-11.6c-.27-37.76-30.97-68.17-68.66-68.17ZM219.52,207.82h-.04c-3.23,0-5.89-2.63-5.92-5.87l-.13-17.41c-.02-3.25,2.62-5.94,5.87-5.96h.04c3.23,0,5.89,2.63,5.92,5.87l.13,17.41c.02,3.25-2.62,5.93-5.87,5.96ZM274.09,207.43h-.04c-3.23,0-5.89-2.63-5.92-5.87l-.13-17.41c-.02-3.25,2.62-5.94,5.87-5.96.01,0,.03,0,.04,0,3.23,0,5.89,2.63,5.92,5.87l.13,17.41c.02,3.25-2.62,5.93-5.87,5.96Z"/>
+    <!-- NAVIGATION DESKTOP -->
+    <nav class="menu-desktop">
+      <a href="index.html">Accueil</a>
+      <a href="infos.html">Infos & Questions</a>
+      <a href="programme.html">Programme</a>
+      <a href="acces.html">Accès</a>
+      <a href="billetterie.html" class="btn-primary">Billetterie</a>
+    </nav>
 
-  <g>
-    <path d="M246.76,26.44l-46.52,46.52,19.78,19.78c30.89-14.57,54.53,13.39,51.16,34.29l39.2-36.97-63.62-63.62Z"/>
-    <path d="M203.65,136.44c-4.77-12.28-1.71-24.35,3.7-32.35l-52.27-52.27L19.9,187.02c70.83-21.64,134.64-19.52,139.11-19.51,12.51-17.41,30.74-27.08,44.65-31.06Z"/>
-    <path d="M339.6,85.7l-52.74,49.75c34.05,8.59,60.13,37.82,63.93,73.53,68.32,18.02,124.37,12.52,124.59,12.5l-135.78-135.78Z"/>
-  </g>
-    </svg>
-<button class="burger" aria-label="Menu">
-  ☰
-</button>
+  </div>
+</header>
 
-    <!-- NAVIGATION -->
-   <nav class="menu">
+<!-- ======================
+     MENU SLIDE MOBILE
+====================== -->
+<nav class="menu-panel">
+
+  <div class="menu-header">
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="menu-logo"
+         alt="Robovaly">
+
+    <button class="close-menu" aria-label="Fermer le menu">
+      ✕
+    </button>
+  </div>
+
   <a href="index.html">Accueil</a>
   <a href="infos.html">Infos & Questions</a>
   <a href="programme.html">Programme</a>
   <a href="acces.html">Accès</a>
   <a href="billetterie.html" class="btn-primary">Billetterie</a>
+
 </nav>
-
-
-  </div>
-</header>
 
 <main>
 
-<section class="hero">
-  <h1>ROBOVALY</h1>
-  <p class="subtitle">La journée de la robotique pour toutes et tous</p>
-  <span class="date">Samedi 22 septembre 2026</span>
-</section>
+  <section class="hero">
+    <!-- Logo en remplacement visuel du H1 -->
+    <img src="assets/svg/logo/Grey/Logo_Robovaly.svg"
+         class="hero-logo"
+         alt="Robovaly — Festival de la robotique">
 
-<section class="section info">
-  <h2>Qu’est-ce que Robovaly</h2>
-  <p>
-    Festival ludique et accessible dédié à la robotique,
-    aux technologies et à la curiosité scientifique.
-  </p>
-</section>
+    <!-- H1 toujours présent mais masqué visuellement -->
+    <h1 class="visually-hidden">Robovaly</h1>
 
-<section class="section activities">
-  <h2>Activités fascinantes</h2>
+    <p class="subtitle">
+      La journée de la robotique pour toutes et tous
+    </p>
 
-  <div class="cards">
-    <div class="card">
-      <img src="assets/svg/gray/robot_workshop_gray.svg" class="icon-lg" alt="">
-      <h3>Ateliers & Workshops</h3>
+    <span class="date">Samedi 22 septembre 2026</span>
+
+    <div class="bg-parallax">
+        <img src="assets/svg/gray/circle_gray.svg"        data-pos="left-top">
+        <img src="assets/svg/gray/wave_small_gray.svg"    data-pos="mid-top-left">
+        <img src="assets/svg/gray/leaf_gray.svg"          data-pos="right-top">
+
+        <img src="assets/svg/gray/nut_gray.svg"           data-pos="left-bottom">
+        <img src="assets/svg/gray/octagon_gray.svg"       data-pos="mid-bottom">
+        <img src="assets/svg/gray/screwdriver_gray.svg"   data-pos="right-bottom">
     </div>
 
-    <div class="card">
-      <img src="assets/svg/gray/robot_talking_gray.svg" class="icon-lg" alt="">
-      <h3>Conférences</h3>
+  </section>
+
+  <section class="section info full-bleed">
+    <div class="inner">
+      <h2>Qu’est-ce que Robovaly</h2>
+      <p>
+        Robovaly marque la relance du festival de la robotique historique de l’EPFL, réimaginé pour une nouvelle génération. Cette première édition remet au cœur de l’événement la découverte, le jeu et la curiosité scientifique.
+
+Le festival rassemble familles, étudiant·e·s, makers et passionné·e·s autour d’ateliers, démonstrations, stands et conférences, dans un esprit accessible et inclusif.
+
+Robovaly perpétue l’héritage du festival d’origine tout en ouvrant une nouvelle page — tournée vers le partage, la créativité et l’envie d’inspirer les futur·e·s explorateurs et exploratrices de la technologie.
+    </div>
+  </section>
+
+  <section class="section activities">
+    <h2>Activités fascinantes</h2>
+
+    <div class="carousel">
+      <button class="carousel-btn prev" aria-label="Activité précédente">‹</button>
+
+      <div class="carousel-window">
+        <div class="carousel-track">
+
+          <div class="card">
+            <img src="assets/svg/gray/robot_workshop_gray.svg" class="icon-lg" alt="">
+            <h3>Ateliers & Workshops</h3>
+            <p class="card-text">
+              Expérimente, manipule et découvre la robotique à travers des activités ludiques,
+              accessibles pour tous les âges.
+            </p>
+          </div>
+
+          <div class="card">
+            <img src="assets/svg/gray/robot_talking_gray.svg" class="icon-lg" alt="">
+            <h3>Conférences</h3>
+            <p class="card-text">
+              Des échanges inspirants avec des chercheur·euse·s, makers et passionné·e·s de technologie.
+            </p>
+          </div>
+
+          <div class="card">
+            <img src="assets/svg/gray/robot_stand_gray.svg" class="icon-lg" alt="">
+            <h3>Stands & Démo</h3>
+            <p class="card-text">
+              Découvre des projets robotiques, teste des prototypes et discute avec leurs créateurs.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="carousel-btn next" aria-label="Activité suivante">›</button>
     </div>
 
-    <div class="card">
-      <img src="assets/svg/gray/robot_stand_gray.svg" class="icon-lg" alt="">
-      <h3>Stands & Démo</h3>
+    <div class="carousel-dots">
+      <button class="carousel-dot active" aria-label="Ateliers"></button>
+      <button class="carousel-dot" aria-label="Conférences"></button>
+      <button class="carousel-dot" aria-label="Stands & Démo"></button>
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
 <footer class="footer">
-  <p>Nous suivre</p>
-  <img src="assets/svg/instagram.svg" class="icon" alt="Instagram">
-  <span>© 2026 Robovaly</span>
+  <p class="footer-title">Nous suivre</p>
+  <img src="assets/svg/off_white/instagram_logo_white.svg" class="icon" alt="Instagram">
+  <span class="footer-copy">© 2026 Robovaly</span>
 </footer>
 
 <script src="js/main.js"></script>
-
 </body>
 </html>

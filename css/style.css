@@ -1,16 +1,14 @@
 /* ======================
-   VARIABLES / THEME
+   VARIABLES
 ====================== */
 
 :root {
   --color-primary: #FF0000;
   --color-secondary: #00C2D1;
-  --color-accent: #00E087;
   --color-dark: #2E2E2E;
   --color-light: #F9F9F9;
 
   --font-main: "aktiv-grotesk", sans-serif;
-  --font-thin: "aktiv-grotesk-thin", sans-serif;
 }
 
 /* ======================
@@ -29,131 +27,358 @@
 
 body {
   font-family: var(--font-main);
-  font-size: 16px;
-  line-height: 1.4;
+  background: var(--color-light);
   color: var(--color-dark);
-  background-color: var(--color-light);
+  line-height: 1.4;
 }
 
 /* ======================
-   TYPO
+   LAYOUT GLOBAL
+====================== */
+
+header,
+main,
+footer {
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+.info .inner p {
+  text-align: justify;   /* justification */
+  line-height: 1.45;     /* interligne plus serré */
+  hyphens: auto;
+}
+
+@media (min-width: 900px) {
+  .info .inner p {
+    column-count: 2;
+    column-gap: 2rem;
+  }
+}
+
+/* ======================
+   TYPOGRAPHIE
 ====================== */
 
 h1 {
   font-size: 3rem;
-  font-weight: black;
+  font-weight: 900;
+  color: black;
 }
 
 h2 {
-  font-size: 2.25rem;
+  font-size: 2.2rem;
   font-weight: 700;
+  line-height: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
 h3 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  margin-top: .6rem;
 }
 
 .date {
+  margin-top: .6rem;
   display: inline-block;
-  margin-top: 1rem;
+  padding: .5rem 1.2rem;
   background: var(--color-primary);
   color: white;
-  padding: 0.5rem 1.2rem;
   border-radius: 999px;
 }
 
+/* Logo utilisé à la place du h1 */
+
+.hero-logo {
+  width: 300px;
+  height: auto;
+  margin-bottom: -.4rem;
+}
+
+/* H1 présent mais masqué (SEO + accessibilité) */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
 /* ======================
-   HEADER / NAV
+   NAVBAR
 ====================== */
 
 header {
   background: var(--color-dark);
-  color: white;
-  padding: 1rem 2rem;
+  padding-block: 1rem;
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
-.nav nav {
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+/* Menu desktop */
+
+.menu-desktop {
   display: flex;
   gap: 1.2rem;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
-.nav a {
+.menu-desktop a {
   color: white;
   text-decoration: none;
 }
 
 .btn-primary {
   background: var(--color-primary);
-  padding: 0.5rem 1.2rem;
+  padding: .5rem 1.2rem;
   border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ======================
-   LOGO & ICONES
+   BURGER
 ====================== */
 
-.logo {
-  width: 110px;
-  height: auto;
-  display: block;
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 22px;
+  height: 2px;
+  background: white;
+}
+
+/* ======================
+   SLIDE PANEL MENU
+====================== */
+
+.menu-panel {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100vh;
+  background: var(--color-dark);
   color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: right .35s ease;
+  z-index: 1000;
 }
 
-.icon {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) invert(1);
+.menu-panel.open {
+  right: 0;
 }
 
-.icon-lg {
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.menu-logo {
   width: 120px;
-  height: 120px;
 }
 
-svg {
-  fill: currentColor;
+.close-menu {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
 }
+
+.menu-panel a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.menu-panel .btn-primary {
+  padding-inline: 1.6rem;
+  align-self: flex-start;
+}
+
+/* ======================
+   HERO
+====================== */
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding-block: 5rem;
+}
+
+/* Parallax icons container */
+
+/* ======================
+   HERO – BACKGROUND ICONS
+====================== */
+
+.bg-parallax {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Chaque icône est positionnée librement */
+.bg-parallax img {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  opacity: 0.65;
+  transition: transform 0.15s linear;
+}
+
+.bg-parallax img {
+  position: absolute;
+  opacity: .35;
+  height: 50px;
+  width: 50px;
+  pointer-events: none;
+}
+
+/* rangée haute */
+.bg-parallax img[data-pos="left-top"]        { top: 14%; left: 1%; }
+.bg-parallax img[data-pos="mid-top-left"]    { top: 10%; left: 28%; }
+.bg-parallax img[data-pos="right-top"]       { top: 12%; right: 4%; }
+
+/* rangée basse */
+.bg-parallax img[data-pos="left-bottom"]     { bottom: 10%; left: 10%; }
+.bg-parallax img[data-pos="mid-bottom"]      { bottom: 6%; left: 48%; }
+.bg-parallax img[data-pos="right-bottom"]    { bottom: 8%; right: 14%; }
+
 
 /* ======================
    SECTIONS
 ====================== */
 
-.hero {
-  text-align: center;
-  padding: 5rem 2rem;
+.section {
+  padding-block: 4rem;
 }
 
-.section {
-  padding: 4rem 2rem;
+/* Full-bleed section */
+
+.full-bleed {
+  margin-inline: calc(-1 * clamp(1.5rem, 5vw, 4rem));
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
 }
+
+.inner {
+  margin-inline: auto;
+}
+
+/* Bannière bleue */
 
 .info {
   background: var(--color-secondary);
   color: white;
 }
 
-.activities .cards {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 2rem;
+/* ======================
+   ACTIVITÉS
+====================== */
+
+.activities {
+  text-align: center;
 }
 
-.card {
-  text-align: center;
+/* Robots = même hauteur */
+
+.icon-lg {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+/* Carousel */
+
+.carousel {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.carousel-window {
+  max-width: 320px;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform .35s ease;
+}
+
+.carousel-track .card {
+  min-width: 100%;
+  padding: 1rem 0;
+}
+
+.card h3 { margin-bottom: .4rem; }
+
+.card-text {
+  font-size: .9rem;
+  color: rgba(0,0,0,.8);
+}
+
+.carousel-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.carousel-dots {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--color-dark);
+  background: transparent;
+}
+
+.carousel-dot.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 /* ======================
@@ -163,76 +388,51 @@ svg {
 .footer {
   background: var(--color-dark);
   color: white;
+  text-align: center;
+  padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 2rem;
+  gap: .3rem;
+}
+
+.footer-title {
+  font-size: .9rem;
+  opacity: .85;
 }
 
 .footer .icon {
-  opacity: 0.8;
+  width: 26px;
+  height: 26px;
+  filter: brightness(0) invert(1);
+  margin-top: .2rem;
+}
+
+.footer-copy {
+  margin-top: 1rem;
+  font-size: .75rem;
+  opacity: .6;
 }
 
 /* ======================
    RESPONSIVE
 ====================== */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
-  .nav {
-    flex-direction: column;
-    align-items: center;
+  .menu-desktop {
+    display: none;
   }
-
-  .nav nav {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.8rem auto 0;
-  }
-}
-
-/* ======================
-   BURGER MENU
-====================== */
-
-.burger {
-  display: none;
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
 
   .burger {
-    display: block;
-    align-self: flex-end;
-  }
-
-  .menu {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 1rem;
-    gap: 1rem;
-  }
-
-  .menu.open {
     display: flex;
   }
+
+  .hero {
+    padding-block: 4rem;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
 }
-
-
-
