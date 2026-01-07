@@ -5,15 +5,14 @@
 :root {
   --color-primary: #FF0000;
   --color-secondary: #00C2D1;
-  --color-tertiary: #4FBA79;   
-  --color-quaternary: #E41B1B; 
+  --color-tertiary: #4FBA79;
+  --color-quaternary: #E41B1B;
 
   --color-dark: #2E2E2E;
   --color-light: #F9F9F9;
 
   --font-main: "aktiv-grotesk", sans-serif;
 }
-
 
 /* ======================
    RESET
@@ -36,7 +35,6 @@ body {
   line-height: 1.4;
 }
 
-/* Layout global */
 header,
 main,
 footer {
@@ -78,7 +76,6 @@ h3 {
   border-radius: 999px;
 }
 
-/* Texte de la section info en colonnes (home) */
 .info .inner p {
   text-align: justify;
   line-height: 1.45;
@@ -92,13 +89,11 @@ h3 {
   }
 }
 
-/* Logo utilisé en hero (page accueil éventuelle) */
 .hero-logo {
   width: 360px;
   height: auto;
 }
 
-/* H1 masqué mais présent (SEO / a11y) */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -128,8 +123,6 @@ header {
   height: auto;
 }
 
-/* Menu desktop */
-
 .menu-desktop {
   display: flex;
   gap: 1.2rem;
@@ -148,6 +141,8 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* ======================
@@ -234,23 +229,19 @@ header {
 }
 
 /* ======================
-   HERO PAGE (programme)
+   HERO PAGE
 ====================== */
 
 .page-hero {
   position: relative;
   padding-block: 4rem;
   min-height: 220px;
-  overflow: hidden; /* important pour couper les icônes */
+  overflow: hidden;
 }
 
 .page-hero-content {
   position: relative;
   z-index: 1;
-}
-
-.page-hero h1 {
-  margin-bottom: -1rem;
 }
 
 /* ======================
@@ -274,12 +265,9 @@ header {
   transition: transform 0.15s linear;
 }
 
-/* Positions type "ddd.png" */
-
 .bg-parallax img[data-pos="left-top"]     { top: 14%; left: 1%; }
 .bg-parallax img[data-pos="mid-top-left"] { top: 10%; left: 28%; }
 .bg-parallax img[data-pos="right-top"]    { top: 12%; right: 4%; }
-
 .bg-parallax img[data-pos="left-bottom"]  { bottom: 10%; left: 10%; }
 .bg-parallax img[data-pos="mid-bottom"]   { bottom: 6%; left: 48%; }
 .bg-parallax img[data-pos="right-bottom"] { bottom: 8%; right: 14%; }
@@ -292,18 +280,20 @@ header {
   padding-block: 4rem;
 }
 
-/* Full-bleed */
-
 .full-bleed {
   margin-inline: calc(-1 * clamp(1.5rem, 5vw, 4rem));
   padding-inline: clamp(1.5rem, 5vw, 4rem);
 }
 
+.section.full-bleed,
+.section {
+  position: relative;
+  z-index: 2;
+}
+
 .inner {
   margin-inline: auto;
 }
-
-/* Bannière bleue / verte info */
 
 .info {
   background: var(--color-secondary);
@@ -324,6 +314,11 @@ header {
   color: #ffffff;
 }
 
+.info--violet {
+  background: #5C5BA8;
+  color: #ffffff;
+}
+
 /* ======================
    ACTIVITÉS / CAROUSEL (home)
 ====================== */
@@ -332,8 +327,6 @@ header {
   text-align: center;
 }
 
-/* Robots = même hauteur */
-
 .icon-lg {
   height: 120px;
   width: auto;
@@ -341,8 +334,6 @@ header {
   display: block;
   margin: 0 auto 1rem;
 }
-
-/* Carousel */
 
 .carousel {
   margin-top: 3rem;
@@ -463,7 +454,7 @@ header {
 ====================== */
 
 .section.program.full-bleed {
-  background: var(--color-secondary); /* bleu/vert Robovaly */
+  background: var(--color-secondary);
   color: white;
 }
 
@@ -472,17 +463,15 @@ header {
   color: white;
 }
 
-/* Carte blanche posée sur le bandeau */
 .calendar-wrap {
   position: relative;
   margin: 1.6rem auto 0;
   padding: 1.4rem 1.6rem;
   border-radius: 1.6rem;
-  background: #ffffff;         
+  background: #ffffff;
   color: var(--color-dark);
 }
 
-/* En-tête des colonnes */
 .calendar-header {
   display: grid;
   grid-template-columns: 80px repeat(4, 1fr);
@@ -502,22 +491,11 @@ header {
   margin-top: .8rem;
   border-radius: 1rem;
   padding: 1.2rem 1.4rem;
-  background: #F4F6F7;          /* léger gris = lisible mais doux */
+  background: #F4F6F7;
   display: grid;
   grid-template-columns: 80px 1fr;
   gap: 1rem;
 }
-
-/* Colonne horaires */
-.calendar-times {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: .8rem;
-  padding-block: .3rem;
-  color: #555;
-}
-
 
 .calendar-times {
   display: flex;
@@ -525,9 +503,9 @@ header {
   justify-content: space-between;
   font-size: 0.8rem;
   padding-block: 0.3rem;
+  color: #555;
 }
 
-/* Grille événements */
 .calendar-grid {
   position: relative;
   display: grid;
@@ -537,7 +515,6 @@ header {
   padding-block: 0.2rem;
 }
 
-/* Cartes d’événements */
 .calendar-event {
   position: relative;
   z-index: 1;
@@ -549,8 +526,6 @@ header {
   flex-direction: column;
   justify-content: center;
 }
-
-/* Variantes COLORÉES */
 
 .calendar-event.is-violet {
   background: #5C5BA8;
@@ -567,7 +542,6 @@ header {
   color: #2E2E2E;
 }
 
-/* Textes internes */
 .calendar-event h3 {
   font-size: 0.8rem;
   margin-bottom: 0.1rem;
@@ -578,7 +552,6 @@ header {
   opacity: 0.9;
 }
 
-/* Barre "heure actuelle" AU-DESSUS */
 .calendar-now {
   position: absolute;
   left: 0;
@@ -591,13 +564,7 @@ header {
   z-index: 2;
 }
 
-/* ======================
-   MOBILE — même layout,
-   scroll horizontal
-====================== */
-
 @media (max-width: 900px) {
-
   .calendar-wrap {
     overflow-x: auto;
   }
@@ -618,22 +585,20 @@ header {
   padding-block: 4rem;
 }
 
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .section.faq h2 {
-  margin-bottom: 1.8rem;  /* espace clair entre titre et questions */
-}
-
-/* Bandeau violet infos pratiques */
-.info--violet {
-  background: #5C5BA8;  /* tu peux ajuster */
-  color: #ffffff;
-}
-
-.info--violet h2 {
-  color: #ffffff;
-}
-
-.info--violet .info-card h3 {
-  color: #ffffff;
+  margin-bottom: 1.8rem;
 }
 
 .faq-list {
@@ -642,21 +607,13 @@ header {
   gap: 0.8rem;
 }
 
-/* Chaque bloc question/réponse */
 .faq-list details {
   background: #ffffff;
   border-radius: 0.8rem;
   padding: 0.9rem 1rem;
-  border: 1px solid rgba(0,0,0,0.08); */
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  border: 1px solid rgba(0,0,0,0.08);
 }
 
-.faq-list details[open] { */
-  transform: translateY(-1px);
-}
-
-/* Enlève le triangle moche par défaut */
-/* Toute la ligne devient un bouton cliquable */
 .faq-list summary {
   list-style: none;
   cursor: pointer;
@@ -665,41 +622,14 @@ header {
   justify-content: space-between;
   padding: 0.6rem 0.2rem;
   border-radius: 0.6rem;
-}
-
-/* supprime le marqueur natif */
-.faq-list summary::-webkit-details-marker {
-  display: none;
-}
-
-/* chevron */
-.faq-list summary::after {
-  content: "▾";
-  font-size: 0.9rem;
-  margin-left: 0.8rem;
-  transition: transform 0.2s ease;
-}
-
-/* rotation à l'ouverture */
-.faq-list details[open] summary::after {
-  transform: rotate(-180deg);
-}
-
-/* Safari/Chrome */
-.faq-list summary::-webkit-details-marker {
-  display: none;
-}
-
-/* Ligne de question */
-.faq-list summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-weight: 650;
   font-size: 0.98rem;
 }
 
-/* Petit chevron à droite */
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
 .faq-list summary::after {
   content: "▾";
   font-size: 0.9rem;
@@ -707,12 +637,10 @@ header {
   transition: transform 0.2s ease;
 }
 
-/* Quand c’est ouvert, chevron vers le haut */
 .faq-list details[open] summary::after {
   transform: rotate(-180deg);
 }
 
-/* Texte de réponse */
 .faq-list details p {
   margin-top: 0.6rem;
   font-size: 0.9rem;
@@ -725,7 +653,6 @@ header {
   text-align: center;
 }
 
-/* On réutilise .btn-primary mais on le pimp un peu ici */
 .faq-cta .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -736,4 +663,198 @@ header {
   font-size: 0.95rem;
   text-decoration: none;
   color: #ffffff !important;
+}
+
+/* ======================
+   PAGE ACCÈS
+====================== */
+
+.section.access:not(.full-bleed) {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section.info.access.full-bleed {
+  background: var(--color-secondary);
+  color: #ffffff;
+  margin-inline: calc(-1 * clamp(1.5rem, 5vw, 4rem));
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+.section.info.access.full-bleed h2 {
+  color: #ffffff;
+}
+
+.section.info.access.full-bleed .section-subtitle {
+  margin-top: 0.4rem;
+  margin-bottom: 1.4rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .access-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.access-card {
+  background: #ffffff;
+  color: #2E2E2E;
+  border-radius: 1rem;
+  padding: 1.2rem 1.4rem;
+}
+
+.access-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.access-card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.access-card .access-note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.address-grid {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.info-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.2rem 1.4rem;
+  color: #2E2E2E;
+}
+
+.access-card p,
+.info-card p {
+  column-count: unset !important;
+}
+
+.info-card h3 {
+  margin-bottom: 0.4rem;
+}
+
+.info-list {
+  margin-top: 0.6rem;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.info-list li + li {
+  margin-top: 0.25rem;
+}
+
+.map-embed {
+  margin-top: 0.6rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 260px;
+  border: none;
+}
+
+.map-actions {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.map-btn {
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #ffffff;
+  text-decoration: none;
+  color: #2E2E2E;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.map-btn.primary-map {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.access-routes.full-bleed {
+  background: #5C5BA8;
+  color: #ffffff;
+  margin-inline: calc(-1 * clamp(1.5rem, 5vw, 4rem));
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+.access-routes h2 {
+  color: #ffffff;
+  margin-bottom: 1.4rem;
+}
+
+.routes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.route-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.2rem 1.4rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #2E2E2E;
+}
+
+.route-card h3 {
+  margin-bottom: 0.4rem;
+}
+
+.access-pmr {
+  margin-top: 3rem;
+  max-width: 720px;
+  text-align: left;
+}
+
+.access-pmr h2 {
+  margin-bottom: 0.8rem;
+}
+
+.access-pmr p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+@media (max-width: 900px) {
+  .address-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .routes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-embed iframe {
+    height: 220px;
+  }
 }

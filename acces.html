@@ -66,6 +66,7 @@
 
 <main>
 
+  <!-- HERO AVEC ICÔNES PARALLAX -->
   <section class="page-hero">
     <div class="page-hero-content">
       <h1>Accès</h1>
@@ -82,46 +83,117 @@
     </div>
   </section>
 
-  <section class="section access">
-    <h2>Se rendre au festival</h2>
-    <div class="access-grid">
-      <div class="access-card">
-        <h3>Transports publics</h3>
-        <p>Metro M1 · arrêt EPFL. Bus 32, 33, 705 · arrêt EPFL.</p>
-      </div>
-      <div class="access-card">
-        <h3>Vélo</h3>
-        <p>Pistes cyclables jusqu’au campus, stationnements vélos près de l’Esplanade.</p>
-      </div>
-      <div class="access-card">
-        <h3>Voiture</h3>
-        <p>Parkings visiteurs disponibles sur le campus. Suivez la signalétique Robovaly.</p>
+  <!-- BANDEAU BLEU : SE RENDRE AU FESTIVAL -->
+  <section class="section info access full-bleed">
+    <div class="inner">
+      <h2>Se rendre au festival</h2>
+      <p class="section-subtitle">
+        En transports publics, à vélo ou en voiture, le campus de l’EPFL est facile d’accès.
+      </p>
+
+      <div class="access-grid">
+        <div class="access-card">
+          <h3>Transports publics</h3>
+          <p>🚈 <strong>Métro M1</strong> · arrêt <strong>EPFL</strong></p>
+          <p>🚌 Bus <strong>32, 33, 705</strong> · arrêt <strong>EPFL</strong></p>
+          <p class="access-note">Depuis Lausanne-Flon : env. 15 minutes avec le métro M1.</p>
+        </div>
+
+        <div class="access-card">
+          <h3>Vélo & mobilité douce</h3>
+          <p>🚲 Pistes cyclables le long du lac et depuis Lausanne / Renens.</p>
+          <p>🔒 Parkings vélos à proximité de l’Esplanade et des forums.</p>
+          <p class="access-note">Pensez à sécuriser votre vélo, le festival ne fournit pas d’antivol.</p>
+        </div>
+
+        <div class="access-card">
+          <h3>Voiture</h3>
+          <p>🚗 Parkings visiteurs disponibles sur le campus EPFL.</p>
+          <p>🔁 Suivez la signalétique <strong>Robovaly</strong> dès votre arrivée.</p>
+          <p class="access-note">Privilégiez le covoiturage et les transports publics si possible.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- BANDEAU VERT : ADRESSE + CARTE -->
   <section class="section info info--green full-bleed">
     <div class="inner">
       <h2>Adresse</h2>
       <div class="address-grid">
         <div class="info-card">
           <h3>Sur place</h3>
-          <p>EPFL · Route Cantonale · 1015 Lausanne</p>
+          <p><strong>EPFL</strong><br>Route Cantonale<br>1015 Lausanne</p>
+          <ul class="info-list">
+            <li>Entrée principale côté <strong>Esplanade EPFL</strong>.</li>
+            <li>Signalétique <strong>Robovaly</strong> dès les accès principaux.</li>
+            <li>Points d’accueil et d’information à l’entrée du festival.</li>
+          </ul>
         </div>
+
         <div class="info-card">
-          <h3>Carte</h3>
-          <p>Plan du campus, entrée principale et parkings visiteurs.</p>
-          <a href="#" class="btn-primary">Ouvrir la carte</a>
+          <h3>Carte interactive</h3>
+          <p>Localisation du campus et de l’Esplanade EPFL.</p>
+
+          <div class="map-embed">
+            <iframe
+              src="https://www.google.com/maps?q=EPFL%20Lausanne&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <div class="map-actions">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=EPFL%2C%20Lausanne"
+               class="map-btn map-btn--gmaps"
+               target="_blank" rel="noopener noreferrer">
+              Itinéraire Google Maps
+            </a>
+            <a href="https://maps.apple.com/?q=EPFL+Lausanne"
+               class="map-btn map-btn--apple"
+               target="_blank" rel="noopener noreferrer">
+              Itinéraire Apple Maps
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section access">
+  <!-- BLOC VENIR DEPUIS... -->
+  <section class="section access access-routes full-bleed">
+    <div class="inner">
+      <h2>Venir depuis…</h2>
+      <div class="routes-grid">
+        <div class="route-card">
+          <h3>Lausanne</h3>
+          <p>🚈 Métro M1 depuis Lausanne-Flon jusqu’à EPFL (≈ 15 min).</p>
+          <p>🚲 Itinéraire vélo par la route cantonale ou en passant par Ouchy.</p>
+        </div>
+        <div class="route-card">
+          <h3>Genève</h3>
+          <p>🚆 Train Genève → Lausanne, puis métro M2 (Lausanne-Flon) + M1 → EPFL.</p>
+          <p>⏱ Temps total : env. 1h15 à 1h30 selon les correspondances.</p>
+        </div>
+        <div class="route-card">
+          <h3>Renens</h3>
+          <p>🚈 Métro M1 depuis Renens-Gare → EPFL (≈ 7 min).</p>
+          <p>🚲 Accès vélo direct par le haut du campus ou la route cantonale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESSIBILITÉ PMR -->
+  <section class="section access access-pmr">
     <h2>Accessibilité PMR</h2>
     <p>
-      L’ensemble des espaces est accessible aux personnes à mobilité réduite.
-      Un accueil dédié est disponible à l’entrée principale.
+      L’ensemble des espaces du festival est accessible aux personnes à mobilité réduite.
+      Des ascenseurs et rampes sont disponibles à proximité des forums et de l’Esplanade.
+    </p>
+    <p>
+      Un accueil dédié peut vous orienter depuis l’entrée principale. N’hésitez pas à
+      signaler vos besoins spécifiques à l’avance via le formulaire de contact.
     </p>
   </section>
 

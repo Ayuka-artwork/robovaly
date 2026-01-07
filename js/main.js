@@ -156,3 +156,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+  /* ======================
+     ITINÉRAIRES MAPS (Google / Apple)
+  ======================= */
+
+  const appleBtn = document.querySelector(".map-btn--apple");
+  const gmapsBtn = document.querySelector(".map-btn--gmaps");
+
+  if (appleBtn && gmapsBtn) {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isApple = /iPhone|iPad|iPod|Macintosh/.test(ua);
+
+    if (isApple) {
+      appleBtn.classList.add("primary-map");
+    } else {
+      gmapsBtn.classList.add("primary-map");
+    }
+  }

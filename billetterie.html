@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robovaly – Festival de la robotique</title>
+  <title>Robovaly – Billetterie</title>
 
   <!-- Adobe Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/mgs3sko.css">
@@ -16,68 +16,192 @@
 
 <header>
   <div class="nav">
-    <img src="assets/svg/logo.svg" alt="Robovaly" class="logo">
 
-    <nav>
+    <!-- LOGO -->
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="logo"
+         alt="Robovaly">
+
+    <!-- BOUTON BURGER -->
+    <button class="burger" aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- NAVIGATION DESKTOP -->
+    <nav class="menu-desktop">
       <a href="index.html">Accueil</a>
       <a href="infos.html">Infos & Questions</a>
       <a href="programme.html">Programme</a>
       <a href="acces.html">Accès</a>
       <a href="billetterie.html" class="btn-primary">Billetterie</a>
     </nav>
+
   </div>
 </header>
 
+<!-- MENU SLIDE MOBILE -->
+<nav class="menu-panel">
+
+  <div class="menu-header">
+    <img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
+         class="menu-logo"
+         alt="Robovaly">
+
+    <button class="close-menu" aria-label="Fermer le menu">
+      ✕
+    </button>
+  </div>
+
+  <a href="index.html">Accueil</a>
+  <a href="infos.html">Infos & Questions</a>
+  <a href="programme.html">Programme</a>
+  <a href="acces.html">Accès</a>
+  <a href="billetterie.html" class="btn-primary">Billetterie</a>
+
+</nav>
+
 <main>
 
-<section class="hero">
-  <h1>ROBOVALY</h1>
-  <p class="subtitle">La journée de la robotique pour toutes et tous</p>
-  <span class="date">Samedi 22 septembre 2026</span>
-
-  <!-- SVG animé -->
-  <img src="assets/svg/Icono-01.svg" class="scroll-svg" alt="">
-</section>
-
-<section class="section info">
-  <h2>Qu’est-ce que Robovaly</h2>
-  <p>
-    Festival ludique et accessible dédié à la robotique,
-    aux technologies et à la curiosité scientifique.
-  </p>
-</section>
-
-<section class="section activities">
-  <h2>Activités fascinantes</h2>
-
-  <div class="cards">
-    <div class="card">
-      <img src="assets/svg/robot-workshop.svg" alt="">
-      <h3>Ateliers & Workshops</h3>
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Billetterie</h1>
+      <p class="subtitle">
+        L’accès au festival est libre. Certains ateliers nécessitent une inscription.
+      </p>
     </div>
 
-    <div class="card">
-      <img src="assets/svg/robot-talk.svg" alt="">
-      <h3>Conférences</h3>
+    <div class="bg-parallax">
+      <img src="assets/svg/gray/circle_gray.svg"      data-pos="left-top">
+      <img src="assets/svg/gray/wave_small_gray.svg"  data-pos="mid-top-left">
+      <img src="assets/svg/gray/leaf_gray.svg"        data-pos="right-top">
+      <img src="assets/svg/gray/nut_gray.svg"         data-pos="left-bottom">
+      <img src="assets/svg/gray/octagon_gray.svg"     data-pos="mid-bottom">
+      <img src="assets/svg/gray/screwdriver_gray.svg" data-pos="right-bottom">
+    </div>
+  </section>
+
+  <!-- BANDEAU VIOLET : TARIFS -->
+  <section class="section info info--violet full-bleed">
+    <div class="inner">
+      <h2>Tarifs</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Entrée au festival</h3>
+          <p><strong>Gratuit</strong> pour toutes et tous.</p>
+          <p>
+            Accès libre aux stands, démonstrations, expositions et espaces libres d’atelier
+            dans la limite des places disponibles.
+          </p>
+        </div>
+        <div class="info-card">
+          <h3>Ateliers sur inscription</h3>
+          <p>
+            Participation <strong>gratuite</strong>, inscription obligatoire sur place
+            à l’accueil Robovaly.
+          </p>
+          <p>
+            Nombre de places limité — premier arrivé, premier inscrit.
+          </p>
+        </div>
+        <div class="info-card">
+          <h3>Groupes & classes</h3>
+          <p>
+            Accueil de classes et groupes possible sur réservation préalable.
+          </p>
+          <p>
+            Merci de nous contacter pour organiser votre venue.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION RÉSERVATION / CTA -->
+  <section class="section">
+    <h2>Réserver un atelier</h2>
+    <div class="access-grid">
+      <div class="access-card">
+        <h3>Sur place le jour J</h3>
+        <p>
+          Les inscriptions se font directement à l’accueil du festival, dès l’ouverture.
+        </p>
+        <p>
+          Un numéro de session et un horaire vous sont attribués, dans la limite
+          des places disponibles.
+        </p>
+      </div>
+
+      <div class="access-card">
+        <h3>Public conseillé</h3>
+        <p>
+          La plupart des ateliers sont adaptés dès <strong>8 ans</strong>, certains
+          dès <strong>12 ans</strong>. L’information est indiquée sur place.
+        </p>
+        <p>
+          Les mineur·e·s restent sous la responsabilité d’un adulte accompagnant.
+        </p>
+      </div>
+
+      <div class="access-card">
+        <h3>Questions particulières</h3>
+        <p>
+          Besoin d’adaptations spécifiques, ou venue en groupe&nbsp;?
+        </p>
+        <p>
+          Contactez l’équipe en amont via le formulaire ci-dessous.
+        </p>
+        <p style="margin-top:0.8rem;">
+          <a href="infos.html#contact" class="btn-primary">Nous écrire</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION FAQ COURTE -->
+  <section class="section faq">
+    <h2>Questions fréquentes</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Faut-il un billet pour entrer ?</summary>
+        <p>
+          Non, l’accès au festival est entièrement gratuit. Seuls certains ateliers
+          demandent une inscription sur place.
+        </p>
+      </details>
+      <details>
+        <summary>Puis-je réserver un atelier à l’avance ?</summary>
+        <p>
+          Pour cette édition, les réservations se font uniquement le jour J, à l’accueil
+          Robovaly. Les créneaux sont attribués dans l’ordre d’arrivée.
+        </p>
+      </details>
+      <details>
+        <summary>Les ateliers sont-ils accessibles aux enfants ?</summary>
+        <p>
+          Oui. L’âge conseillé varie selon les ateliers (indiqué sur place), mais la plupart
+          sont accessibles dès 8–12 ans. Les enfants doivent être accompagnés.
+        </p>
+      </details>
     </div>
 
-    <div class="card">
-      <img src="assets/svg/robot-stand.svg" alt="">
-      <h3>Stands & Démo</h3>
+    <div class="faq-cta">
+      <a href="infos.html#contact" class="btn-primary">
+        Autre question ? Contactez-nous
+      </a>
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
 <footer class="footer">
-  <p>Nous suivre</p>
-  <img src="assets/svg/instagram.svg" alt="Instagram">
-  <span>© 2026 Robovaly</span>
+  <p class="footer-title">Nous suivre</p>
+  <img src="assets/svg/off_white/instagram_logo_white.svg" class="icon" alt="Instagram">
+  <span class="footer-copy">© 2026 Robovaly</span>
 </footer>
 
-<!-- JS -->
 <script src="js/main.js"></script>
-
 </body>
 </html>
