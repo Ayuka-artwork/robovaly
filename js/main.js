@@ -92,6 +92,93 @@ document.addEventListener("DOMContentLoaded", () => {
 		startAutoplay();
 	}
 
+	// ===== Carousel tactile (swipe) =====
+(() => {
+  const windowEl = document.querySelector(".carousel-window");
+  const track = document.querySelector(".carousel-track");
+  if (!windowEl || !track) return;
+
+  const prevBtn = document.querySelector(".carousel-btn.prev");
+  const nextBtn = document.querySelector(".carousel-btn.next");
+  const dots = Array.from(document.querySelectorAll(".carousel-dot"));
+
+  const slides = Array.from(track.children);
+  if (!slides.length) return;
+
+  let index = 0;
+
+  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
+  function updateCarousel() {
+    index = clamp(index, 0, slides.length - 1);
+    track.style.transition = "transform 0.35s ease";
+    track.style.transform = `translateX(${-index * 100}%)`;
+
+    dots.forEach((d, i) => d.classList.toggle("active", i === index));
+  }
+
+  // Boutons / dots
+  prevBtn?.addEventListener("click", () => { index--; updateCarousel(); });
+  nextBtn?.addEventListener("click", () => { index++; updateCarousel(); });
+  dots.forEach((dot, i) => dot.addEventListener("click", () => { index = i; updateCarousel(); }));
+
+  // --- Swipe / drag ---
+  let isDown = false;
+  let startX = 0;
+  let deltaX = 0;
+  let startIndex = 0;
+
+
+  const SWIPE_THRESHOLD = 40; // px
+
+  function onDown(e) {
+    isDown = true;
+    startX = e.clientX;
+    deltaX = 0;
+    startIndex = index;
+    track.style.transition = "none";
+    windowEl.setPointerCapture?.(e.pointerId);
+  }
+
+  function onMove(e) {
+    if (!isDown) return;
+
+    deltaX = e.clientX - startX;
+
+    // Convertit px -> %
+    const width = windowEl.getBoundingClientRect().width || 1;
+    const dragPercent = (deltaX / width) * 100;
+
+    // position "suivante" pendant drag
+    track.style.transform = `translateX(${-(startIndex * 100) + dragPercent}%)`;
+  }
+
+  function onUp() {
+    if (!isDown) return;
+    isDown = false;
+
+    // Décide si on change de slide
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+      if (deltaX < 0) index = startIndex + 1;
+      else index = startIndex - 1;
+    } else {
+      index = startIndex;
+    }
+
+    updateCarousel();
+  }
+
+  // Pointer Events (souris + tactile)
+  windowEl.addEventListener("pointerdown", onDown);
+  windowEl.addEventListener("pointermove", onMove);
+  windowEl.addEventListener("pointerup", onUp);
+  windowEl.addEventListener("pointercancel", onUp);
+  windowEl.addEventListener("pointerleave", onUp);
+
+  // Init
+  updateCarousel();
+})();
+
 	/* ======================
 		 PARALLAX ICONES HERO
 	======================= */

@@ -88,6 +88,7 @@ h3 {
 	background: var(--color-primary);
 	color: white;
 	border-radius: 999px;
+	z-index: 99999;
 }
 
 .info .inner p {
@@ -104,9 +105,10 @@ h3 {
 }
 
 .hero-logo {
-	width: 450px;
 	height: auto;
 	margin-bottom: 0.4rem;
+	width: clamp(200px, 60vw, 450px);
+	height: auto;
 }
 
 .visually-hidden {
@@ -415,6 +417,22 @@ header {
 	background: var(--color-primary);
 	border-color: var(--color-primary);
 }
+
+.carousel-window {
+  touch-action: pan-y;
+}
+
+.carousel-track {
+  will-change: transform;
+}
+
+.carousel-track,
+.carousel-btn,
+.carousel-dot {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 
 /* ======================
 	 FOOTER
@@ -928,5 +946,134 @@ header {
 
 .section.info.info--violet.full-bleed .info-grid .info-card {
 	align-self: stretch;
+}
+
+/* ======================
+   UX POLISH: OVERSCROLL + SELECTION + MICRO-ANIMS
+====================== */
+
+/* Empêche l’overscroll (rebond/chain scroll) */
+html, body {
+  overscroll-behavior: none;
+}
+
+/* Bonus: évite le scroll horizontal accidentel */
+body {
+  overflow-x: hidden;
+}
+
+/* ----------------------
+   SELECTION RULES
+   - Texte normal: OK
+   - UI: non sélectionnable
+---------------------- */
+
+.no-select,
+header,
+.menu-desktop,
+.menu-panel,
+.burger,
+.btn-primary,
+.carousel-btn,
+.carousel-dot,
+.map-btn,
+.access-card,
+.route-card,
+.faq-list summary,
+.close-menu {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* On force la sélection possible dans les zones utiles */
+.info-card,
+.info-card p,
+.info-card li,
+.section p,
+.section li,
+.faq-list details p,
+.footer-copy {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* (Optionnel mais pratique) : l’adresse cliquable/copieuse reste sélectionnable */
+.info-card h3 {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* ----------------------
+   MICRO-ANIMATIONS (soft)
+---------------------- */
+
+/* transitions globales des éléments UI */
+.btn-primary,
+.map-btn,
+.access-card,
+.route-card,
+.faq-list details,
+.menu-desktop a {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+/* Hover lift subtil */
+@media (hover: hover) {
+  .access-card:hover,
+  .route-card:hover,
+  .faq-list details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+  }
+
+  .btn-primary:hover,
+  .map-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+  }
+
+  .menu-desktop a:hover {
+    opacity: 0.85;
+  }
+}
+
+/* Focus visible propre (clavier / a11y) */
+.btn-primary:focus-visible,
+.map-btn:focus-visible,
+.menu-desktop a:focus-visible,
+.faq-list summary:focus-visible,
+.burger:focus-visible,
+.close-menu:focus-visible {
+  outline: 3px solid rgba(255,255,255,0.65);
+  outline-offset: 3px;
+}
+
+/* FAQ: ouverture/fermeture un peu plus “smooth” */
+.faq-list details {
+  overflow: hidden;
+}
+
+.faq-list details[open] {
+  box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+}
+
+/* Carousel dots: feedback */
+.carousel-dot {
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+@media (hover: hover) {
+  .carousel-dot:hover {
+    transform: scale(1.15);
+  }
+}
+
+/* Réduit les animations si l’utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
