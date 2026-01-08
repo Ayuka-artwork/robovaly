@@ -48,7 +48,6 @@ footer {
    CONTAINER (ULTRA CLEAN)
 ====================== */
 
-/* largeur “utile” unique, réutilisable partout */
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
