@@ -12,6 +12,9 @@
   --color-light: #F9F9F9;
 
   --font-main: "aktiv-grotesk", sans-serif;
+
+  /* ultra clean */
+  --container-max: 960px;
 }
 
 /* ======================
@@ -39,6 +42,17 @@ header,
 main,
 footer {
   padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+
+/* ======================
+   CONTAINER (ULTRA CLEAN)
+====================== */
+
+/* largeur “utile” unique, réutilisable partout */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* ======================
@@ -317,6 +331,13 @@ header {
 .info--violet {
   background: #5C5BA8;
   color: #ffffff;
+}
+
+.icon-inline {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  margin-right: 0.35em;
 }
 
 /* ======================
@@ -666,19 +687,14 @@ header {
 }
 
 /* ======================
-   PAGE ACCÈS
+   PAGE ACCÈS (ULTRA CLEAN)
 ====================== */
 
-.section.access:not(.full-bleed) {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
+/* Bandeau bleu (full-bleed) */
 .section.info.access.full-bleed {
   background: var(--color-secondary);
   color: #ffffff;
-  margin-inline: calc(-1 * clamp(1.5rem, 5vw, 4rem));
-  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  padding-block: 3rem;
 }
 
 .section.info.access.full-bleed h2 {
@@ -692,16 +708,11 @@ header {
   opacity: 0.9;
 }
 
+/* Cartes transport */
 .access-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-}
-
-@media (max-width: 900px) {
-  .access-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .access-card {
@@ -726,23 +737,36 @@ header {
   opacity: 0.8;
 }
 
+/* SECTION ADRESSE + MAP (vert full-bleed) */
+.section.access.full-bleed {
+  background: var(--color-tertiary);
+  padding-block: 3rem;
+}
+
 .address-grid {
-  margin-top: 1.2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 0.71fr 1.1fr;
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.address-grid > * {
+  min-width: 0;
+}
+
+.info-card,
+.map-embed {
+  min-height: 380px;
 }
 
 .info-card {
   background: #ffffff;
-  border-radius: 1rem;
-  padding: 1.2rem 1.4rem;
+  border-radius: 1.2rem;
+  padding: 1.6rem 1.8rem;
   color: #2E2E2E;
-}
-
-.access-card p,
-.info-card p {
-  column-count: unset !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .info-card h3 {
@@ -760,20 +784,26 @@ header {
   margin-top: 0.25rem;
 }
 
+/* Map */
 .map-embed {
-  margin-top: 0.6rem;
-  border-radius: 1rem;
+  border-radius: 1.2rem;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .map-embed iframe {
-  width: 100%;
-  height: 260px;
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
   border: none;
+  height: 100% !important;
 }
 
+/* boutons en bas de la carte */
 .map-actions {
-  margin-top: 0.9rem;
+  margin-top: auto;
+  padding-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
@@ -798,11 +828,11 @@ header {
   border-color: var(--color-primary);
 }
 
+/* Section “Venir depuis…” */
 .access-routes.full-bleed {
   background: #5C5BA8;
   color: #ffffff;
-  margin-inline: calc(-1 * clamp(1.5rem, 5vw, 4rem));
-  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  padding-block: 3rem;
 }
 
 .access-routes h2 {
@@ -829,8 +859,10 @@ header {
   margin-bottom: 0.4rem;
 }
 
+/* PMR */
 .access-pmr {
   margin-top: 3rem;
+  margin-bottom: 4rem;
   max-width: 720px;
   text-align: left;
 }
@@ -845,16 +877,58 @@ header {
   margin-bottom: 0.6rem;
 }
 
+/* Responsive */
 @media (max-width: 900px) {
+  .access-grid {
+    grid-template-columns: 1fr;
+  }
+
   .address-grid {
     grid-template-columns: 1fr;
+  }
+
+  .map-embed iframe {
+    height: 260px !important;
   }
 
   .routes-grid {
     grid-template-columns: 1fr;
   }
 
-  .map-embed iframe {
-    height: 220px;
+  .info-card,
+  .map-embed {
+    min-height: unset;
   }
 }
+
+/* ======================
+   INFOS (DATES/LIEU/TARIFS) – CARTES COMPACTES
+====================== */
+
+.section.info.info--violet.full-bleed .info-grid .info-card {
+  min-height: unset;
+  height: auto;
+  display: block;
+  padding: 1rem 1.2rem;
+  border-radius: 1rem;
+}
+
+.section.info.info--violet.full-bleed .info-grid .info-card h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.section.info.info--violet.full-bleed .info-grid .info-card p {
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.section.info.info--violet.full-bleed .info-grid {
+  align-items: stretch;
+}
+
+.section.info.info--violet.full-bleed .info-grid .info-card {
+  align-self: stretch;
+}
+
