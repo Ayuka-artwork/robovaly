@@ -1,263 +1,303 @@
+/* ======================
+   MENU BURGER
+====================== */
 document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.querySelector(".burger");
+  const menuPanel = document.querySelector(".menu-panel");
+  const closeBtn = document.querySelector(".close-menu");
 
-	/* ======================
-		 MENU BURGER (slide droite)
-	======================= */
+  burger?.addEventListener("click", () => menuPanel?.classList.add("open"));
+  closeBtn?.addEventListener("click", () => menuPanel?.classList.remove("open"));
 
-	const burger    = document.querySelector(".burger");
-	const menuPanel = document.querySelector(".menu-panel");
-	const closeBtn  = document.querySelector(".close-menu");
+  /* ======================
+     NAV ACTIVE
+  ======================= */
+  (() => {
+    const path = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll(".menu-desktop a, .menu-panel a").forEach((a) => {
+      const href = (a.getAttribute("href") || "").split("/").pop();
+      if (!href) return;
 
-	if (burger && menuPanel) {
-		burger.addEventListener("click", () => {
-			menuPanel.classList.add("open");
-		});
-	}
+      const isIndex = (path === "" || path === "index.html") && href === "index.html";
+      const isSame = href === path;
 
-	if (closeBtn && menuPanel) {
-		closeBtn.addEventListener("click", () => {
-			menuPanel.classList.remove("open");
-		});
-	}
+      if (isIndex || isSame) a.classList.add("is-active");
+    });
+  })();
 
-	/* ======================
-		 CARROUSEL ACTIVITÉS (home)
-	======================= */
-
-	const track   = document.querySelector(".carousel-track");
-	const prevBtn = document.querySelector(".carousel-btn.prev");
-	const nextBtn = document.querySelector(".carousel-btn.next");
-	const dots    = document.querySelectorAll(".carousel-dot");
-
-	if (track && prevBtn && nextBtn && dots.length) {
-
-		const slides = track.querySelectorAll(".card");
-		let currentIndex = 0;
-		let autoplayId   = null;
-		const AUTOPLAY_DELAY = 5000;
-
-		function goToSlide(index) {
-			if (index < 0) index = slides.length - 1;
-			if (index >= slides.length) index = 0;
-
-			currentIndex = index;
-			track.style.transform = `translateX(-${index * 100}%)`;
-
-			dots.forEach((dot, i) =>
-				dot.classList.toggle("active", i === index)
-			);
-		}
-
-		function startAutoplay() {
-			stopAutoplay();
-			autoplayId = setInterval(() => {
-				goToSlide(currentIndex + 1);
-			}, AUTOPLAY_DELAY);
-		}
-
-		function stopAutoplay() {
-			if (autoplayId) {
-				clearInterval(autoplayId);
-				autoplayId = null;
-			}
-		}
-
-		nextBtn.addEventListener("click", () => {
-			stopAutoplay();
-			goToSlide(currentIndex + 1);
-			startAutoplay();
-		});
-
-		prevBtn.addEventListener("click", () => {
-			stopAutoplay();
-			goToSlide(currentIndex - 1);
-			startAutoplay();
-		});
-
-		dots.forEach((dot, i) => {
-			dot.addEventListener("click", () => {
-				stopAutoplay();
-				goToSlide(i);
-				startAutoplay();
-			});
-		});
-
-		const carousel = document.querySelector(".carousel");
-		if (carousel) {
-			carousel.addEventListener("mouseenter", stopAutoplay);
-			carousel.addEventListener("mouseleave", startAutoplay);
-		}
-
-		goToSlide(0);
-		startAutoplay();
-	}
-
-	// ===== Carousel tactile (swipe) =====
-(() => {
-  const windowEl = document.querySelector(".carousel-window");
+  /* ======================
+     CAROUSEL – INFINITE / SWIPE / WHEEL
+  ======================= */
   const track = document.querySelector(".carousel-track");
-  if (!windowEl || !track) return;
-
+  const windowEl = document.querySelector(".carousel-window");
   const prevBtn = document.querySelector(".carousel-btn.prev");
   const nextBtn = document.querySelector(".carousel-btn.next");
   const dots = Array.from(document.querySelectorAll(".carousel-dot"));
 
-  const slides = Array.from(track.children);
-  if (!slides.length) return;
+  if (track && windowEl && prevBtn && nextBtn && dots.length >= 2) {
+    const realSlides = Array.from(track.querySelectorAll(".card"));
+    const total = realSlides.length;
 
-  let index = 0;
+    if (total >= 2) {
+      const firstClone = realSlides[0].cloneNode(true);
+      const lastClone = realSlides[total - 1].cloneNode(true);
+      firstClone.classList.add("is-clone");
+      lastClone.classList.add("is-clone");
 
-  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+      track.insertBefore(lastClone, realSlides[0]);
+      track.appendChild(firstClone);
 
-  function updateCarousel() {
-    index = clamp(index, 0, slides.length - 1);
-    track.style.transition = "transform 0.35s ease";
-    track.style.transform = `translateX(${-index * 100}%)`;
+      let indexTrack = 1;
 
-    dots.forEach((d, i) => d.classList.toggle("active", i === index));
+      let autoplayId = null;
+      let autoplayEnabled = true;
+      const AUTOPLAY_DELAY = 5000;
+
+      let isAnimating = false;
+
+      function setTransition(on) {
+        track.style.transition = on ? "transform 0.35s ease" : "none";
+      }
+
+      function translate() {
+        track.style.transform = `translateX(-${indexTrack * 100}%)`;
+      }
+
+      function updateDots() {
+        let i = indexTrack - 1;
+        if (i < 0) i = total - 1;
+        if (i >= total) i = 0;
+        dots.forEach((d, n) => d.classList.toggle("active", n === i));
+      }
+
+      function disableAutoplayForever() {
+        autoplayEnabled = false;
+        if (autoplayId) clearInterval(autoplayId);
+        autoplayId = null;
+      }
+
+      function startAutoplay() {
+        if (!autoplayEnabled) return;
+        if (autoplayId) clearInterval(autoplayId);
+        autoplayId = setInterval(() => {
+          goTo(indexTrack + 1, true, true);
+        }, AUTOPLAY_DELAY);
+      }
+
+      function goTo(i, animate = true, fromAutoplay = false) {
+        if (isAnimating) return;
+
+        if (!fromAutoplay) disableAutoplayForever();
+
+        isAnimating = true;
+
+        indexTrack = i;
+        setTransition(animate);
+        translate();
+        updateDots();
+      }
+
+      function snapIfClone() {
+        if (indexTrack === total + 1) {
+          setTransition(false);
+          indexTrack = 1;
+          translate();
+        }
+
+        if (indexTrack === 0) {
+          setTransition(false);
+          indexTrack = total;
+          translate();
+        }
+
+        updateDots();
+      }
+
+      track.addEventListener("transitionend", () => {
+        snapIfClone();
+        isAnimating = false;
+      });
+
+      setTransition(false);
+      indexTrack = 1;
+      translate();
+      updateDots();
+      isAnimating = false;
+      startAutoplay();
+
+      nextBtn.addEventListener("click", () => goTo(indexTrack + 1));
+      prevBtn.addEventListener("click", () => goTo(indexTrack - 1));
+
+      dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i + 1)));
+
+      let down = false;
+      let startX = 0,
+        startY = 0,
+        deltaX = 0;
+      let startIndex = 1;
+
+      const SWIPE_THRESHOLD = 60;
+
+      windowEl.addEventListener("pointerdown", (e) => {
+        disableAutoplayForever();
+        down = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        deltaX = 0;
+        startIndex = indexTrack;
+        setTransition(false);
+        windowEl.setPointerCapture?.(e.pointerId);
+      });
+
+      windowEl.addEventListener("pointermove", (e) => {
+        if (!down) return;
+
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+
+        if (Math.abs(dy) > Math.abs(dx)) return;
+
+        deltaX = dx;
+
+        const w = windowEl.getBoundingClientRect().width || 1;
+        const dragPercent = (dx / w) * 100;
+        track.style.transform = `translateX(${-(startIndex * 100) + dragPercent}%)`;
+      });
+
+      windowEl.addEventListener("pointerup", () => {
+        if (!down) return;
+        down = false;
+
+        setTransition(true);
+
+        if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+          goTo(deltaX < 0 ? startIndex + 1 : startIndex - 1);
+        } else {
+          indexTrack = startIndex;
+          translate();
+          updateDots();
+          isAnimating = false;
+        }
+      });
+
+      windowEl.addEventListener("pointercancel", () => {
+        down = false;
+        isAnimating = false;
+      });
+      windowEl.addEventListener("pointerleave", () => {});
+
+      windowEl.addEventListener(
+        "wheel",
+        (e) => {
+          if (isAnimating) return;
+
+          const dx = e.deltaX || 0;
+          const dy = e.deltaY || 0;
+
+          const primary = Math.abs(dx) > Math.abs(dy) ? dx : dy;
+
+          if (Math.abs(primary) < 25) return;
+
+          e.preventDefault();
+          goTo(primary > 0 ? indexTrack + 1 : indexTrack - 1);
+        },
+        { passive: false }
+      );
+    }
   }
 
-  // Boutons / dots
-  prevBtn?.addEventListener("click", () => { index--; updateCarousel(); });
-  nextBtn?.addEventListener("click", () => { index++; updateCarousel(); });
-  dots.forEach((dot, i) => dot.addEventListener("click", () => { index = i; updateCarousel(); }));
+  /* ======================
+     PARALLAX
+  ======================= */
+  const icons = document.querySelectorAll(".bg-parallax img");
+  if (icons.length) {
+    icons.forEach((icon, i) => {
+      icon.dataset.speed = String(0.1 + i * 0.03);
+      icon.dataset.angle = String(Math.random() * 10 - 5);
+      icon.dataset.scale = String(0.9 + Math.random() * 0.25);
+    });
 
-  // --- Swipe / drag ---
-  let isDown = false;
-  let startX = 0;
-  let deltaX = 0;
-  let startIndex = 0;
-
-
-  const SWIPE_THRESHOLD = 40; // px
-
-  function onDown(e) {
-    isDown = true;
-    startX = e.clientX;
-    deltaX = 0;
-    startIndex = index;
-    track.style.transition = "none";
-    windowEl.setPointerCapture?.(e.pointerId);
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY;
+      icons.forEach((icon) => {
+        const speed = Number(icon.dataset.speed);
+        const angle = Number(icon.dataset.angle);
+        const scale = Number(icon.dataset.scale);
+        icon.style.transform = `translateY(${y * speed}px) rotate(${angle}deg) scale(${scale})`;
+      });
+    });
   }
 
-  function onMove(e) {
-    if (!isDown) return;
+  /* ======================
+     PROGRAMME – BARRE HEURE (ONLY EVENT DAY)
+  ======================= */
+  const calendarGrid = document.querySelector(".calendar-grid");
+  const nowBar = document.querySelector(".calendar-now");
 
-    deltaX = e.clientX - startX;
+  if (calendarGrid && nowBar) {
+    const EVENT_DATE = "2026-09-22";
+    const START_HOUR = 10;
+    const END_HOUR = 18;
 
-    // Convertit px -> %
-    const width = windowEl.getBoundingClientRect().width || 1;
-    const dragPercent = (deltaX / width) * 100;
-
-    // position "suivante" pendant drag
-    track.style.transform = `translateX(${-(startIndex * 100) + dragPercent}%)`;
-  }
-
-  function onUp() {
-    if (!isDown) return;
-    isDown = false;
-
-    // Décide si on change de slide
-    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-      if (deltaX < 0) index = startIndex + 1;
-      else index = startIndex - 1;
-    } else {
-      index = startIndex;
+    function yyyyMmDd(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${y}-${m}-${day}`;
     }
 
-    updateCarousel();
+    function updateNowBar() {
+      const now = new Date();
+
+      if (yyyyMmDd(now) !== EVENT_DATE) {
+        nowBar.style.display = "none";
+        return;
+      }
+
+      const current = now.getHours() + now.getMinutes() / 60;
+
+      if (current < START_HOUR || current > END_HOUR) {
+        nowBar.style.display = "none";
+        return;
+      }
+
+      nowBar.style.display = "block";
+
+      const ratio = (current - START_HOUR) / (END_HOUR - START_HOUR);
+      const height = calendarGrid.clientHeight;
+      nowBar.style.top = `${ratio * height}px`;
+    }
+
+    updateNowBar();
+    setInterval(updateNowBar, 60000);
   }
-
-  // Pointer Events (souris + tactile)
-  windowEl.addEventListener("pointerdown", onDown);
-  windowEl.addEventListener("pointermove", onMove);
-  windowEl.addEventListener("pointerup", onUp);
-  windowEl.addEventListener("pointercancel", onUp);
-  windowEl.addEventListener("pointerleave", onUp);
-
-  // Init
-  updateCarousel();
-})();
-
-	/* ======================
-		 PARALLAX ICONES HERO
-	======================= */
-
-	const parallaxIcons = document.querySelectorAll(".bg-parallax img");
-
-	if (parallaxIcons.length) {
-
-		parallaxIcons.forEach((icon, i) => {
-			icon.dataset.speed = 0.1 + (i * 0.03);
-			icon.dataset.scale = 0.9 + Math.random() * 0.25;
-			icon.dataset.angle = (Math.random() * 10 - 5).toFixed(2);
-		});
-
-		window.addEventListener("scroll", () => {
-			const y = window.scrollY;
-
-			parallaxIcons.forEach(icon => {
-				const speed  = Number(icon.dataset.speed);
-				const scale  = Number(icon.dataset.scale);
-				const angle  = Number(icon.dataset.angle);
-				const offset = y * speed;
-
-				icon.style.transform =
-					`translateY(${offset}px) rotate(${angle}deg) scale(${scale})`;
-			});
-		});
-	}
-
-	/* ======================
-		 BARRE "HEURE ACTUELLE" SUR LE PROGRAMME
-	======================= */
-
-	const calendarGrid = document.querySelector(".calendar-grid");
-	const nowBar       = document.querySelector(".calendar-now");
-
-	if (calendarGrid && nowBar) {
-		function updateNowBar() {
-			const startHour = 10;  // début programme
-			const endHour   = 18;  // fin programme
-
-			const now   = new Date();
-			const hours = now.getHours() + now.getMinutes() / 60;
-
-			let t = (hours - startHour) / (endHour - startHour);
-
-			if (t < 0 || t > 1) {
-				nowBar.style.display = "none";
-				return;
-			}
-
-			nowBar.style.display = "block";
-
-			const height = calendarGrid.clientHeight;
-			const top    = t * height;
-
-			nowBar.style.top = `${top}px`;
-		}
-
-		updateNowBar();
-		setInterval(updateNowBar, 60_000);
-	}
-
 });
 
-	/* ======================
-		 ITINÉRAIRES MAPS (Google / Apple)
-	======================= */
+/* ======================
+   MAPS BUTTON AUTO
+====================== */
+(() => {
+  const apple = document.querySelector(".map-btn--apple");
+  const google = document.querySelector(".map-btn--gmaps");
+  if (!apple || !google) return;
 
-	const appleBtn = document.querySelector(".map-btn--apple");
-	const gmapsBtn = document.querySelector(".map-btn--gmaps");
+  if (/iPhone|iPad|Mac/.test(navigator.userAgent)) apple.classList.add("primary-map");
+  else google.classList.add("primary-map");
+})();
 
-	if (appleBtn && gmapsBtn) {
-		const ua = navigator.userAgent || navigator.vendor || window.opera;
-		const isApple = /iPhone|iPad|iPod|Macintosh/.test(ua);
+/* ======================
+   FAQ – CLICK ANYWHERE ON CARD
+====================== */
+document.querySelectorAll(".faq-list details").forEach((details) => {
+  details.addEventListener("click", (e) => {
+    // si clic sur un lien, on laisse le lien vivre sa vie
+    if (e.target.closest("a")) return;
 
-		if (isApple) {
-			appleBtn.classList.add("primary-map");
-		} else {
-			gmapsBtn.classList.add("primary-map");
-		}
-	}
+    // si clic sur summary, le navigateur gère déjà
+    if (e.target.closest("summary")) return;
+
+    // sinon: toggle manuel
+    details.open = !details.open;
+  });
+});
+
