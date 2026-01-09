@@ -1157,6 +1157,12 @@ header {
 	width: 100%;
 }
 
+.sponsor-tier-band {
+	background: var(--color-tertiary);
+	border-radius: 1.4rem;
+	padding: 1rem;
+}
+
 .sponsor-tier {
 	background: #fff;
 	border-radius: 1rem;
@@ -1165,13 +1171,22 @@ header {
 	color: var(--color-dark);
 	display: flex;
 	flex-direction: column;
-	box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+	position: relative;
+	padding-left: 1.2rem;
 }
 
 .sponsor-tier h2 {
 	margin-bottom: 0.8rem;
 	color: var(--color-dark);
+	text-align: left;
+	position: relative;
+	padding-left: 0;
 }
+
+.sponsor-tier h2 .icon-inline {
+	position: static;
+}
+.sponsor-tier::before { content: none; }
 
 .sponsor-tier-grid {
 	display: grid;
