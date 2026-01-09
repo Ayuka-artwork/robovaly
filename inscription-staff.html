@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Robovaly – Infos & Questions</title>
+	<title>Robovaly – Inscription staff</title>
 
 	<link rel="stylesheet" href="https://use.typekit.net/mgs3sko.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -45,8 +45,8 @@
 
 	<div class="menu-header">
 		<img src="assets/svg/logo/Off White/Logo_Robovaly_Off_White.svg"
-				 class="menu-logo"
-				 alt="Robovaly">
+					 class="menu-logo"
+					 alt="Robovaly">
 
 		<button class="close-menu" aria-label="Fermer le menu">
 			✕
@@ -66,8 +66,8 @@
 
 	<section class="page-hero">
 		<div class="page-hero-content">
-			<h1>Infos & Questions</h1>
-			<p class="subtitle">Tout ce qu’il faut savoir avant votre visite.</p>
+			<h1>Inscription staff</h1>
+			<p class="subtitle">Rejoins l’équipe Robovaly pour la journée du festival.</p>
 		</div>
 
 		<div class="bg-parallax">
@@ -80,49 +80,46 @@
 		</div>
 	</section>
 
-	<section class="section info info--violet full-bleed">
-		<div class="info-grid">
-			<div class="info-card">
-				<h3>Dates & horaires</h3>
-				<p>Samedi 22 août 2026 · 8h–18h</p>
-			</div>
-			<div class="info-card">
-				<h3>Lieu</h3>
-				<p>EPFL – Esplanade et forums couverts</p>
-			</div>
-			<div class="info-card">
-				<h3>Tarifs</h3>
-				<p>Entrée libre. Ateliers sur inscription.</p>
-			</div>
-		</div>
-	</section>
+	<section class="section staff-info">
+		<h2>On a besoin de toi</h2>
+		<p class="section-subtitle">Accueil, logistique, montage, animation : chaque rôle compte.</p>
 
-	<section class="section faq">
-		<h2>Questions fréquentes</h2>
-		<div class="faq-list">
-			<details open>
-				<summary>Faut-il s’inscrire pour venir ?</summary>
-				<p>
-					L’entrée à Robovaly est libre. Certaines activités et ateliers sont soumis à une jauge limitée et peuvent nécessiter une inscription.
-				</p>
-			</details>
-			<details>
-				<summary>L’événement est-il destiné aux enfants ?</summary>
-				<p>
-					La journée est principalement conçue pour un public dès 14 ans. Certaines activités peuvent être accessibles à des publics plus jeunes sous la responsabilité d’un adulte.
-				</p>
-			</details>
-			<details>
-				<summary>Y a-t-il de quoi manger sur place ?</summary>
-				<p>
-					Des stands de restauration et des points d’eau sont disponibles sur le site.
-					Vous pouvez aussi apporter votre pique-nique.
-				</p>
-			</details>
-		</div>
-		<div class="faq-cta">
-			<a href="#" class="btn-primary">Contactez-nous</a>
-		</div>
+		<form class="staff-form">
+			<div class="form-row">
+				<div class="form-field">
+					<label for="staff-name">Nom & prénom</label>
+					<input id="staff-name" name="staff-name" type="text" placeholder="Votre nom" required>
+				</div>
+				<div class="form-field">
+					<label for="staff-email">Email</label>
+					<input id="staff-email" name="staff-email" type="email" placeholder="vous@email.com" required>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-field">
+					<label for="staff-role">Rôle souhaité</label>
+					<select id="staff-role" name="staff-role" required>
+						<option value="">Choisir un rôle</option>
+						<option value="accueil">Accueil & orientation</option>
+						<option value="logistique">Logistique</option>
+						<option value="technique">Technique & installations</option>
+						<option value="animation">Animation & stands</option>
+					</select>
+				</div>
+				<div class="form-field">
+					<label for="staff-dispo">Disponibilités</label>
+					<input id="staff-dispo" name="staff-dispo" type="text" placeholder="Matin, après-midi, journée" required>
+				</div>
+			</div>
+
+			<div class="form-field">
+				<label for="staff-message">Message</label>
+				<textarea id="staff-message" name="staff-message" rows="4" placeholder="Dis-nous en plus sur toi"></textarea>
+			</div>
+
+			<button type="submit" class="btn-primary">Envoyer ma candidature</button>
+		</form>
 	</section>
 
 </main>

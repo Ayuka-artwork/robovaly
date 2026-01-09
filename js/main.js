@@ -250,6 +250,46 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	/* ======================
+		 COUNTDOWN – INDEX
+	======================= */
+	const countdownSection = document.querySelector(".countdown");
+	if (countdownSection) {
+		const target = countdownSection.getAttribute("data-countdown-date");
+		const targetDate = target ? new Date(target) : null;
+		const values = {
+			days: countdownSection.querySelector('[data-unit="days"]'),
+			hours: countdownSection.querySelector('[data-unit="hours"]'),
+			minutes: countdownSection.querySelector('[data-unit="minutes"]'),
+			seconds: countdownSection.querySelector('[data-unit="seconds"]'),
+		};
+
+		function pad(value) {
+			return String(value).padStart(2, "0");
+		}
+
+		function updateCountdown() {
+			if (!targetDate || Number.isNaN(targetDate.getTime())) return;
+
+			const now = new Date();
+			let delta = Math.max(0, targetDate.getTime() - now.getTime());
+
+			const totalSeconds = Math.floor(delta / 1000);
+			const days = Math.floor(totalSeconds / 86400);
+			const hours = Math.floor((totalSeconds % 86400) / 3600);
+			const minutes = Math.floor((totalSeconds % 3600) / 60);
+			const seconds = totalSeconds % 60;
+
+			if (values.days) values.days.textContent = pad(days);
+			if (values.hours) values.hours.textContent = pad(hours);
+			if (values.minutes) values.minutes.textContent = pad(minutes);
+			if (values.seconds) values.seconds.textContent = pad(seconds);
+		}
+
+		updateCountdown();
+		setInterval(updateCountdown, 1000);
+	}
+
+	/* ======================
 		 PARALLAX
 	======================= */
 	const icons = document.querySelectorAll(".bg-parallax img");
