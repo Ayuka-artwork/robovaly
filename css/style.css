@@ -121,7 +121,7 @@ h3 {
 	}
 
 	.hero {
-		min-height: 60vh;
+		min-height: 40vh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -777,7 +777,7 @@ header {
 	font-size: 1.2rem;
 	line-height: 1.6rem;
 	margin-bottom: 0.8rem;
-	color: rgba(255, 255, 255, 0.7);
+	color: rgb(255, 255, 255);
 }
 
 .calendar-header {
@@ -1227,8 +1227,67 @@ header {
 
 /* STAFF FORM */
 .staff-info {
-	max-width: 980px;
-	margin: 0 auto;
+	max-width: none;
+	margin: 0;
+}
+
+.staff-band {
+	background: #5C5BA8;
+	color: #fff;
+	width: 100vw;
+	margin-left: 50%;
+	transform: translateX(-50%);
+}
+
+.staff-band .staff-info {
+	max-width: none;
+	margin: 0;
+}
+
+.staff-band h2 {
+	margin-bottom: 0.1rem;
+}
+
+.staff-band .section-subtitle {
+	font-size: 1rem;
+	line-height: 1.3rem;
+	margin-bottom: 1.2rem;
+}
+
+.staff-band .staff-info {
+	padding-block: 3rem;
+}
+
+.staff-band-inner {
+	width: 100%;
+}
+
+.staff-band .staff-form {
+	max-width: none;
+	margin: 0;
+}
+
+.staff-band .staff-form {
+	background: #fff;
+	color: #2E2E2E;
+	border-radius: 1.2rem;
+	padding: 1.8rem;
+}
+
+.staff-band .staff-form label {
+	color: rgba(0, 0, 0, 0.65);
+}
+
+.staff-band .staff-form input,
+.staff-band .staff-form select,
+.staff-band .staff-form textarea {
+	background: #fff;
+	color: #2E2E2E;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.staff-band .staff-form .btn-primary {
+	border: none;
 }
 
 .staff-form {
@@ -1399,6 +1458,11 @@ header,
 .close-menu:focus-visible {
 	outline: 3px solid rgba(255, 255, 255, 0.65);
 	outline-offset: 3px;
+}
+
+.staff-info .btn-primary:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
 }
 
 /* RESPONSIVE */
