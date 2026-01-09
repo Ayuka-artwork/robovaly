@@ -312,42 +312,32 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	/* ======================
-		 PROGRAMME – BARRE HEURE (ONLY EVENT DAY)
+		 PROGRAMME – BARRE HEURE (ALWAYS SHOW IF WITHIN HOURS)
 	======================= */
 	const calendarGrid = document.querySelector(".calendar-grid");
 	const nowBar = document.querySelector(".calendar-now");
 
 	if (calendarGrid && nowBar) {
-		const EVENT_DATE = "2026-09-22";
 		const START_HOUR = 10;
 		const END_HOUR = 18;
 
-		function yyyyMmDd(d) {
-			const y = d.getFullYear();
-			const m = String(d.getMonth() + 1).padStart(2, "0");
-			const day = String(d.getDate()).padStart(2, "0");
-			return `${y}-${m}-${day}`;
+		function getGridHeight() {
+			const styles = getComputedStyle(calendarGrid);
+			const rowSize = parseFloat(styles.getPropertyValue("--calendar-row")) || 56;
+			const rowCount = parseFloat(styles.getPropertyValue("--calendar-rows")) || 9;
+			return rowSize * rowCount;
 		}
 
 		function updateNowBar() {
 			const now = new Date();
 
-			if (yyyyMmDd(now) !== EVENT_DATE) {
-				nowBar.style.display = "none";
-				return;
-			}
-
 			const current = now.getHours() + now.getMinutes() / 60;
 
-			if (current < START_HOUR || current > END_HOUR) {
-				nowBar.style.display = "none";
-				return;
-			}
-
+			const clamped = Math.min(Math.max(current, START_HOUR), END_HOUR);
 			nowBar.style.display = "block";
 
-			const ratio = (current - START_HOUR) / (END_HOUR - START_HOUR);
-			const height = calendarGrid.clientHeight;
+			const ratio = (clamped - START_HOUR) / (END_HOUR - START_HOUR);
+			const height = calendarGrid.clientHeight || getGridHeight();
 			nowBar.style.top = `${ratio * height}px`;
 		}
 
