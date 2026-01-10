@@ -125,7 +125,7 @@ h3 {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		height: 60vh;
+		height: 50vh;
 	}
 
 	.section.countdown.full-bleed {
@@ -440,6 +440,7 @@ header {
 	gap: 1.2rem;
 	align-items: center;
 	text-align: center;
+
 }
 
 .countdown-timer {
