@@ -1574,6 +1574,7 @@ header,
 
 	.sponsors-grid { grid-template-columns: 1fr; }
 	.sponsors-columns { grid-template-columns: 1fr; }
+	.sponsor-tier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 	.form-row { grid-template-columns: 1fr; }
 
@@ -1587,6 +1588,10 @@ header,
 	.intro-pills {
 		grid-template-columns: 1fr;
 	}
+}
+
+@media (max-width: 600px) {
+	.sponsor-tier-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
