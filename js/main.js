@@ -346,6 +346,80 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	/* ======================
+		 PROGRAMME – ACCORDÉON INLINE
+	======================= */
+	const programEvents = Array.from(document.querySelectorAll(".calendar-event[data-detail]"));
+	const programDetails = Array.from(document.querySelectorAll(".program-detail"));
+
+	if (programEvents.length && programDetails.length) {
+		const detailsById = new Map(programDetails.map((detail) => [detail.id, detail]));
+
+		function closeAllDetails() {
+			programDetails.forEach((detail) => { detail.open = false; });
+			programEvents.forEach((eventEl) => {
+				eventEl.classList.remove("is-active");
+				eventEl.setAttribute("aria-expanded", "false");
+			});
+		}
+
+		function openDetailFor(eventEl) {
+			const targetId = eventEl.dataset.detail;
+			const detail = targetId ? detailsById.get(targetId) : null;
+			if (!detail) return;
+
+			const wasOpen = detail.open;
+			closeAllDetails();
+
+			if (!wasOpen) {
+				detail.open = true;
+				eventEl.classList.add("is-active");
+				eventEl.setAttribute("aria-expanded", "true");
+
+				const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+				detail.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+			}
+		}
+
+		programEvents.forEach((eventEl) => {
+			eventEl.setAttribute("role", "button");
+			eventEl.setAttribute("tabindex", "0");
+			eventEl.setAttribute("aria-controls", eventEl.dataset.detail || "");
+			eventEl.setAttribute("aria-expanded", "false");
+
+			eventEl.addEventListener("click", () => openDetailFor(eventEl));
+			eventEl.addEventListener("keydown", (e) => {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					openDetailFor(eventEl);
+				}
+			});
+		});
+
+		programDetails.forEach((detail) => {
+			detail.addEventListener("click", (e) => {
+				if (e.target.closest("a")) return;
+				if (e.target.closest("summary")) return;
+				detail.open = !detail.open;
+			});
+
+			detail.addEventListener("toggle", () => {
+				if (detail.open) {
+					programDetails.forEach((other) => {
+						if (other !== detail) other.open = false;
+					});
+				}
+
+				programEvents.forEach((eventEl) => {
+					const isTarget = eventEl.dataset.detail === detail.id && detail.open;
+					if (isTarget) eventEl.classList.add("is-active");
+					else eventEl.classList.remove("is-active");
+					eventEl.setAttribute("aria-expanded", isTarget ? "true" : "false");
+				});
+			});
+		});
+	}
+
+	/* ======================
 		 FAQ – CLICK ANYWHERE ON CARD
 	======================= */
 	document.querySelectorAll(".faq-list details").forEach((details) => {
