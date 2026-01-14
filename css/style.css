@@ -1000,6 +1000,7 @@ header {
 	border: 1px solid rgba(0, 0, 0, 0.08);
 	color: var(--color-dark);
 	transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+	scroll-margin-top: 140px;
 }
 
 .program-detail-badge {
