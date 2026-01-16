@@ -1055,8 +1055,8 @@ header {
 
 /* FAQ */
 .section.faq {
-	max-width: 860px;
-	margin: 0 auto;
+	width: 100%;
+	margin: 0;
 	padding-block: 4rem;
 }
 

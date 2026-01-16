@@ -173,12 +173,25 @@ document.addEventListener("DOMContentLoaded", () => {
 			let startY = 0;
 			let deltaX = 0;
 			let startIndex = 1;
+			let pointerId = null;
+			let hasHorizontalDrag = false;
 
 			const SWIPE_THRESHOLD = 60;
+			const CANCEL_SCROLL_THRESHOLD = 8;
+
+			function resetSwipePosition(animate = true) {
+				setTransition(animate);
+				indexTrack = startIndex;
+				translate();
+				updateDots();
+				isAnimating = false;
+			}
 
 			windowEl.addEventListener("pointerdown", (e) => {
 				disableAutoplayForever();
 				down = true;
+				pointerId = e.pointerId;
+				hasHorizontalDrag = false;
 
 				startX = e.clientX;
 				startY = e.clientY;
@@ -195,7 +208,15 @@ document.addEventListener("DOMContentLoaded", () => {
 				const dx = e.clientX - startX;
 				const dy = e.clientY - startY;
 
-				if (Math.abs(dy) > Math.abs(dx)) return;
+				if (!hasHorizontalDrag && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > CANCEL_SCROLL_THRESHOLD) {
+					down = false;
+					windowEl.releasePointerCapture?.(pointerId);
+					pointerId = null;
+					resetSwipePosition(true);
+					return;
+				}
+
+				if (Math.abs(dx) > Math.abs(dy)) hasHorizontalDrag = true;
 
 				deltaX = dx;
 
@@ -210,23 +231,24 @@ document.addEventListener("DOMContentLoaded", () => {
 			windowEl.addEventListener("pointerup", () => {
 				if (!down) return;
 				down = false;
+				windowEl.releasePointerCapture?.(pointerId);
+				pointerId = null;
 
 				setTransition(true);
 
 				if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
 					goTo(deltaX < 0 ? startIndex + 1 : startIndex - 1);
 				} else {
-					indexTrack = startIndex;
-					translate();
-					updateDots();
-					isAnimating = false;
+					resetSwipePosition(true);
 				}
 			});
 
 			windowEl.addEventListener("pointercancel", () => {
+				if (!down) return;
 				down = false;
-				isAnimating = false;
-				updateDots();
+				windowEl.releasePointerCapture?.(pointerId);
+				pointerId = null;
+				resetSwipePosition(true);
 			});
 
 			/* ----- WHEEL (trackpad) ----- */
