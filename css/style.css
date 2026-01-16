@@ -1022,9 +1022,24 @@ header {
 	gap: 0.2rem;
 	font-weight: 700;
 	font-size: 0.98rem;
+	position: relative;
+	padding-right: 1.6rem;
 }
 
 .program-detail summary::-webkit-details-marker { display: none; }
+
+.program-detail summary::after {
+	content: "▾";
+	position: absolute;
+	top: 0.1rem;
+	right: 0.2rem;
+	font-size: 0.9rem;
+	transition: transform 0.2s ease;
+}
+
+.program-detail[open] summary::after {
+	transform: rotate(-180deg);
+}
 
 .program-detail-title { font-weight: 700; }
 
