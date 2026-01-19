@@ -200,6 +200,10 @@ header {
 	padding-bottom: 0.45rem;
 }
 
+.menu-panel a:not(.btn-primary) {
+	padding-bottom: 0.45rem;
+}
+
 .menu-desktop a:not(.btn-primary)::after,
 .menu-panel a:not(.btn-primary)::after {
 	content: "";
@@ -282,7 +286,7 @@ header {
 	height: 100vh;
 	background: var(--color-dark);
 	color: #fff;
-	padding: 2rem;
+	padding: 3rem 2rem 2rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1.2rem;
@@ -293,18 +297,25 @@ header {
 .menu-panel.open { right: 0; }
 
 .menu-header {
+	position: absolute;
+	top: 1rem;
+	right: 1.2rem;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-items: center;
-	margin-bottom: 2rem;
+	height: 2rem;
+	margin-bottom: 0;
 }
 
 .menu-logo { width: 120px; }
+.menu-panel .menu-logo { display: none; }
 
 .close-menu {
 	background: none;
 	border: none;
 	font-size: 2rem;
+	line-height: 1;
+	height: 2rem;
 	color: #fff;
 	cursor: pointer;
 }
@@ -314,6 +325,7 @@ header {
 	text-decoration: none;
 	display: block;
 }
+
 
 .menu-panel .btn-primary {
 	padding-inline: 1.6rem;
@@ -1224,7 +1236,7 @@ details[open] > *:not(summary) {
 
 .info-card,
 .map-embed {
-	min-height: 380px;
+	min-height: 440px;
 }
 
 .info-card {
@@ -1253,8 +1265,9 @@ details[open] > *:not(summary) {
 	border-radius: 1.2rem;
 	overflow: hidden;
 	width: 100%;
-	height: 100%;
+	height: clamp(420px, 52vh, 540px);
 	border: 1px solid rgba(46, 46, 46, 0.2);
+	background: #fff;
 }
 
 .map-zoom-trigger {
@@ -1273,7 +1286,7 @@ details[open] > *:not(summary) {
 	max-width: 100% !important;
 	border: none;
 	height: 100% !important;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .map-lightbox {
@@ -1299,9 +1312,9 @@ details[open] > *:not(summary) {
 .map-lightbox-inner {
 	position: relative;
 	width: 86vw;
-	height: 80vh;
+	height: 62vh;
 	max-width: 1100px;
-	max-height: 820px;
+	max-height: 680px;
 	background: #fff;
 	border-radius: 1rem;
 	padding: 0.6rem;
@@ -1378,7 +1391,7 @@ body.map-lightbox-open {
 @media (max-width: 600px) {
 	.map-lightbox-inner {
 		width: 92vw;
-		height: 88vh;
+		height: 78vh;
 		max-width: none;
 		max-height: calc(100vh - 2rem);
 		border-radius: 1rem;
