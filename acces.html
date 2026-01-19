@@ -135,7 +135,11 @@
 				</ul>
 
 				<div class="map-actions">
-					<a href="#" class="map-btn primary-map">
+					<a
+						href="https://www.google.com/maps/dir/?api=1&destination=EPFL%20Lausanne"
+						class="map-btn primary-map js-directions"
+						data-apple="https://maps.apple.com/?daddr=EPFL%2C%20Lausanne"
+						data-google="https://www.google.com/maps/dir/?api=1&destination=EPFL%20Lausanne">
 						<img src="assets/svg/off_white/arrow_w_circle_white.svg" class="icon-inline" alt="">
 						Itinéraire
 					</a>
@@ -147,14 +151,13 @@
 			</div>
 
 			<div class="map-embed">
-				<iframe
-					src="https://maps.google.com/maps?q=EPFL&t=&z=15&ie=UTF8&iwloc=&output=embed"
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade">
-				</iframe>
+				<button type="button" class="map-zoom-trigger" aria-haspopup="dialog">
+					<img src="assets/svg/gray/Map.svg" alt="Carte EPFL">
+				</button>
 			</div>
 
 		</div>
+
 	</section>
 
 	<section class="access-routes full-bleed">
@@ -216,6 +219,23 @@
 
 	<span class="footer-copy">© 2026 Robovaly</span>
 </footer>
+
+<div class="map-lightbox" aria-hidden="true">
+	<div class="map-lightbox-inner" role="dialog" aria-modal="true" aria-label="Carte EPFL">
+		<button type="button" class="map-lightbox-close" aria-label="Fermer la carte">
+			<span aria-hidden="true">X</span>
+			<span class="visually-hidden">Fermer</span>
+		</button>
+		<div class="map-zoom-controls" aria-label="Contrôles de zoom">
+			<button type="button" class="map-zoom-btn" data-zoom="in" aria-label="Zoomer">+</button>
+			<button type="button" class="map-zoom-btn" data-zoom="out" aria-label="Dézoomer">–</button>
+			<button type="button" class="map-zoom-btn" data-zoom="reset" aria-label="Réinitialiser le zoom">1:1</button>
+		</div>
+		<div class="map-lightbox-viewport">
+			<img src="assets/svg/gray/Map.svg" alt="Carte EPFL agrandie">
+		</div>
+	</div>
+</div>
 
 <script src="js/main.js"></script>
 </body>

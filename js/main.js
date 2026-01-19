@@ -30,6 +30,169 @@ document.addEventListener("DOMContentLoaded", () => {
 	})();
 
 	/* ======================
+		 MAPS LINK (APPLE / GOOGLE)
+	======================= */
+	(() => {
+		const directionsBtn = document.querySelector(".js-directions");
+		if (!directionsBtn) return;
+
+		const appleUrl = directionsBtn.getAttribute("data-apple");
+		const googleUrl = directionsBtn.getAttribute("data-google") || directionsBtn.getAttribute("href");
+		if (!appleUrl || !googleUrl) return;
+
+		const ua = navigator.userAgent || "";
+		const isApple = /iPad|iPhone|iPod|Macintosh/.test(ua);
+		const isAndroid = /Android/.test(ua);
+		const targetUrl = (!isAndroid && isApple) ? appleUrl : googleUrl;
+
+		directionsBtn.setAttribute("href", targetUrl);
+	})();
+
+	/* ======================
+		 MAP LIGHTBOX
+	======================= */
+	(() => {
+		const trigger = document.querySelector(".map-zoom-trigger");
+		const lightbox = document.querySelector(".map-lightbox");
+		const closeBtn = document.querySelector(".map-lightbox-close");
+		const viewport = document.querySelector(".map-lightbox-viewport");
+		const mapImg = viewport?.querySelector("img");
+		const zoomBtns = Array.from(document.querySelectorAll(".map-zoom-btn"));
+
+		if (!trigger || !lightbox || !closeBtn || !viewport || !mapImg) return;
+
+		mapImg.setAttribute("draggable", "false");
+
+		let scale = 1;
+		let minScale = 1;
+		let translateX = 0;
+		let translateY = 0;
+		let isDragging = false;
+		let startX = 0;
+		let startY = 0;
+		const mobileMq = window.matchMedia("(max-width: 600px)");
+
+		function applyTransform() {
+			mapImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+		}
+
+		function getCoverScale() {
+			const rect = viewport.getBoundingClientRect();
+			const imgW = mapImg.naturalWidth || rect.width || 1;
+			const imgH = mapImg.naturalHeight || rect.height || 1;
+			return Math.max(rect.width / imgW, rect.height / imgH);
+		}
+
+		function setMinScaleForViewport() {
+			if (mobileMq.matches) {
+				minScale = getCoverScale() * 0.5;
+			} else {
+				minScale = 1;
+			}
+		}
+
+		function resetTransform() {
+			scale = minScale;
+			translateX = 0;
+			translateY = 0;
+			applyTransform();
+		}
+
+		function openMap() {
+			lightbox.classList.add("open");
+			lightbox.setAttribute("aria-hidden", "false");
+			document.body.classList.add("map-lightbox-open");
+			setMinScaleForViewport();
+			resetTransform();
+		}
+
+		function closeMap() {
+			lightbox.classList.remove("open");
+			lightbox.setAttribute("aria-hidden", "true");
+			document.body.classList.remove("map-lightbox-open");
+		}
+
+		trigger.addEventListener("click", (e) => {
+			e.preventDefault();
+			openMap();
+		});
+
+		closeBtn.addEventListener("click", closeMap);
+
+		lightbox.addEventListener("click", (e) => {
+			if (e.target === lightbox) closeMap();
+		});
+
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") closeMap();
+		});
+
+		zoomBtns.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const action = btn.getAttribute("data-zoom");
+				if (action === "in") scale = Math.min(4, scale + 0.25);
+				if (action === "out") scale = Math.max(minScale, scale - 0.25);
+				if (action === "reset") resetTransform();
+				applyTransform();
+			});
+		});
+
+		viewport.addEventListener("pointerdown", (e) => {
+			if (scale <= 1) return;
+			isDragging = true;
+			startX = e.clientX - translateX;
+			startY = e.clientY - translateY;
+			viewport.setPointerCapture(e.pointerId);
+			e.preventDefault();
+		});
+
+		viewport.addEventListener("pointermove", (e) => {
+			if (!isDragging) return;
+			translateX = e.clientX - startX;
+			translateY = e.clientY - startY;
+			applyTransform();
+			e.preventDefault();
+		});
+
+		viewport.addEventListener("pointerup", () => {
+			isDragging = false;
+		});
+
+		viewport.addEventListener("pointercancel", () => {
+			isDragging = false;
+		});
+
+		viewport.addEventListener("touchstart", (e) => {
+			if (scale <= 1) return;
+			const touch = e.touches[0];
+			if (!touch) return;
+			isDragging = true;
+			startX = touch.clientX - translateX;
+			startY = touch.clientY - translateY;
+			e.preventDefault();
+		}, { passive: false });
+
+		viewport.addEventListener("touchmove", (e) => {
+			if (!isDragging) return;
+			const touch = e.touches[0];
+			if (!touch) return;
+			translateX = touch.clientX - startX;
+			translateY = touch.clientY - startY;
+			applyTransform();
+			e.preventDefault();
+		}, { passive: false });
+
+		viewport.addEventListener("touchend", () => {
+			isDragging = false;
+		});
+
+		mapImg.addEventListener("load", () => {
+			setMinScaleForViewport();
+			resetTransform();
+		});
+	})();
+
+	/* ======================
 		 CAROUSEL – INFINITE / SWIPE / WHEEL (DOTS FIX)
 	======================= */
 	const track = document.querySelector(".carousel-track");
