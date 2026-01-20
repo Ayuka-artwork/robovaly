@@ -279,6 +279,10 @@ header {
 
 /* SLIDE PANEL MENU */
 .menu-panel {
+	--menu-close-size: 2rem;
+	--menu-close-top: 1rem;
+	--menu-link-line: 1.4rem;
+
 	position: fixed;
 	top: 0;
 	right: -320px;
@@ -286,7 +290,7 @@ header {
 	height: 100vh;
 	background: var(--color-dark);
 	color: #fff;
-	padding: 3rem 2rem 2rem;
+	padding: calc(var(--menu-close-top) + (var(--menu-close-size) / 2) - (var(--menu-link-line) / 2)) 2rem 2rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1.2rem;
@@ -298,12 +302,12 @@ header {
 
 .menu-header {
 	position: absolute;
-	top: 1rem;
+	top: var(--menu-close-top);
 	right: 1.2rem;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	height: 2rem;
+	height: var(--menu-close-size);
 	margin-bottom: 0;
 }
 
@@ -313,9 +317,9 @@ header {
 .close-menu {
 	background: none;
 	border: none;
-	font-size: 2rem;
+	font-size: var(--menu-close-size);
 	line-height: 1;
-	height: 2rem;
+	height: var(--menu-close-size);
 	color: #fff;
 	cursor: pointer;
 }
@@ -324,6 +328,7 @@ header {
 	color: #fff;
 	text-decoration: none;
 	display: block;
+	line-height: var(--menu-link-line);
 }
 
 
